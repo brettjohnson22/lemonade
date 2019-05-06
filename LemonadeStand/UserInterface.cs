@@ -22,11 +22,11 @@ namespace LemonadeStand
 
         public void DailyText(int daynumber, string forecast, double walletamount)
         {
-            Console.WriteLine("Welcome to Day " + daynumber + ". Today's forecast is " + forecast + ". You have $" + walletamount + ".\n");
+            Console.WriteLine("\nWelcome to Day " + daynumber + ". Today's forecast is " + forecast + ". You have $" + walletamount + ".\n\nGo to store or proceed? Type 'store' or 'proceed'.");
         }
         public void EndOfDay(int daynumber, double price, double profit, double walletamount)
         {
-            Console.WriteLine("Today was Day " + daynumber + ". You charged $" + price + " per cup, and made $" + profit + ". You now have $" + walletamount + "." );
+            Console.WriteLine("\nToday was Day " + daynumber + ". You charged $" + price + " per cup, and made $" + profit + ". You now have $" + walletamount + "." );
         }
     }
 }

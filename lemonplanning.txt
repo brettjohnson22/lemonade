@@ -8,6 +8,8 @@ Lemonade Stand Steps
 7. Prompts how many glasses to make, how many signs to make, how much you want to charge, then Dif you want to change anything.
 8. If Thunderstorms, special display
 9. Daily Financial Report: Day #, # glasses sold, Cost per glass, # glasses made, # signs made, income vs expenses, profit, assets.
+10. Repeat 5-9 for rest of week, if player still has money.
+11. End game report. 
 
 
 

@@ -10,13 +10,20 @@ namespace LemonadeStand
     {
         //member variables (HAS A)
         public double myWallet;
+        public double lemons;
+        public double sugar;
+        public double ice;
 
 
         //constructor (SPAWNER)
         public Inventory()
         {
-            myWallet = 10;
+            myWallet = 50;
+            lemons = 20;
+            sugar = 20;
+            ice = 20;
         }
         //member methods (CAN DO)
+        
     }
 }

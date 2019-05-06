@@ -10,16 +10,29 @@ namespace LemonadeStand
     {
         //member variables (HAS A)
         public string forecast;
-        public string conditions;
-       
+        public List<string> conditions;
+        public double temperature;
+
 
         //constructor (SPAWNER)
         public Weather()
         {
             forecast = "50% chance of rain";
-            conditions = "rain";
+          
         }
 
         //member methods (CAN DO)
+        public string DetermineConditions()
+        {
+            conditions = new List<string>() { "sunny", "cloudy", "rainy", "storming" };
+            Random rand = new Random();
+            int weatherindex = rand.Next(4);
+            string actualWeather = conditions[weatherindex];
+            return actualWeather;
+        }
+        public string DetermineForecast()
+        {
+
+        }
     }
 }

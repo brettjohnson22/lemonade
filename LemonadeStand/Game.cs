@@ -12,8 +12,9 @@ namespace LemonadeStand
         public UserInterface UI;
         public Player player1;
         public Day day;
+        public Store store;
         public int daycounter;
-        
+
 
         //constructor (SPAWNER)
         public Game()
@@ -25,6 +26,7 @@ namespace LemonadeStand
         {
             UI = new UserInterface();
             player1 = new Player();
+            store = new Store();
             daycounter = 0;
             UI.IntroText();
         }
@@ -32,19 +34,33 @@ namespace LemonadeStand
         {
             day = new Day();
             daycounter++;
-            UI.DailyText(daycounter, day.weather.forecast, player1.myInventory.myWallet);
+            bool valid = false;
+            while (!valid)
+            {
+                UI.DailyText(daycounter, day.weather.forecast, player1.myInventory.myWallet);
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "store":
+                        GoToStore();
+                        break;
+                    case "proceed":
+                        valid = true;
+                        break;
+                }
+            }
             double price = GetPrice();
             double cups = MakeCups();
             double cost = GetCost();
-            double customers = DetermineBuyingCustomers(cups);
-            double profit = ResolveDay(price, customers);
+            double sales = DetermineSales(cups);
+            double profit = ResolveDay(price, sales);
             player1.myInventory.myWallet = UpdateWallet(player1.myInventory.myWallet, cost, cups, profit);
             UI.EndOfDay(daycounter, price, profit, player1.myInventory.myWallet);
             Console.ReadLine();
         }
         public double GetPrice()
         {
-            Console.WriteLine("What will you set today's price at?");
+            Console.WriteLine("\nWhat will you set today's price at?");
             double price = double.Parse(Console.ReadLine());
             return price;
         }
@@ -55,12 +71,13 @@ namespace LemonadeStand
         }
         public double MakeCups()
         {
-            Console.WriteLine("How many cups will you make today?");
+            Console.WriteLine("\nHow many cups will you make today?");
             double cups = double.Parse(Console.ReadLine());
             return cups;
         }
-        public double DetermineBuyingCustomers(double cups)
+        public double DetermineSales(double cups)
         {
+            //Will eventually be the full algorhythm to determine number of sales
             double customers = cups;
             return customers;
         }
@@ -74,12 +91,42 @@ namespace LemonadeStand
             double profit = price * customers;
             return profit;
         }
+        public void GoToStore()
+        {
+            bool valid = false;
+            while (!valid)
+            {
+                Console.WriteLine("\nWhat do you want to buy? Type 'lemons', 'sugar', 'ice', or 'exit'.");
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "lemons":
+                        store.SellLemons(player1.myInventory);
+                        break;
+                    case "sugar":
+                        store.SellSugar(player1.myInventory);
+                        break;
+                    case "ice":
+                        store.SellIce(player1.myInventory);
+                        break;
+                    case "exit":
+                        valid = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
         public void RunWeek()
         {
             while(daycounter < 7)
             {
                 EachDay();                
             }
+        }
+        public void GameOver()
+        {
+
         }
     }
 }
