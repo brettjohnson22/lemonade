@@ -74,7 +74,7 @@ namespace LemonadeStand
         }
         public double MakePitchers(Inventory inv)
         {
-            Console.WriteLine($"\nYou have {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\nEach pitcher uses {inv.myrecipe.amountoflemons} lemons, {inv.myrecipe.amountofsugar} sugar, and {inv.myrecipe.amountofice} ice.\n8 cups in a pitcher. How many pitchers will you make today?");
+            Console.WriteLine($"\nYou have {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.\n8 cups in a pitcher. How many pitchers will you make today?");
             int pitchers = int.Parse(Console.ReadLine());
             
             return pitchers;
@@ -123,7 +123,29 @@ namespace LemonadeStand
         }
         public void ChangeRecipe()
         {
-
+            bool valid = false;
+            while (!valid)
+            {
+                Console.WriteLine($"Your current recipe is {player1.myInventory.myRecipe.amountoflemons} lemons, {player1.myInventory.myRecipe.amountofsugar} sugar, and {player1.myInventory.myRecipe.amountofice} ice.\nWhich do you want to change? Type 'lemons', 'sugar', 'ice', or 'exit'.");
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "lemons":
+                        player1.myInventory.myRecipe.AdjustLemons();
+                        break;
+                    case "sugar":
+                        player1.myInventory.myRecipe.AdjustSugar();
+                        break;
+                    case "ice":
+                        player1.myInventory.myRecipe.AdjustIce();
+                        break;
+                    case "exit":
+                        valid = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         public void RunWeek()
         {

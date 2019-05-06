@@ -13,13 +13,13 @@ namespace LemonadeStand
         public double lemons;
         public double sugar;
         public double ice;
-        public Recipe myrecipe;
+        public Recipe myRecipe;
 
 
         //constructor (SPAWNER)
         public Inventory()
         {
-            myrecipe = new Recipe();
+            myRecipe = new Recipe();
             myWallet = 50;
             lemons = 20;
             sugar = 20;

@@ -22,5 +22,78 @@ namespace LemonadeStand
         }
 
         //member methods (CAN DO)
+        public void AdjustLemons()
+        {
+            bool keepGoing = true;
+            while (keepGoing == true)
+            {
+                Console.Clear();
+                Console.WriteLine($"Your pitchers currently use {amountoflemons} lemons. Use up/down arrows to adjust. Hit 'enter' when done.");
+                ConsoleKey keyinput = Console.ReadKey().Key;
+                switch (keyinput)
+                {
+                    case ConsoleKey.UpArrow:
+                        amountoflemons++;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        amountoflemons--;
+                        break;
+                    case ConsoleKey.Enter:
+                        keepGoing = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+        public void AdjustSugar()
+        {
+            bool keepGoing = true;
+            while (keepGoing == true)
+            {
+                Console.Clear();
+                Console.WriteLine($"Your pitchers currently use {amountofsugar} sugar. Use up/down arrows to adjust. Hit 'enter' when done.");
+                ConsoleKey keyinput = Console.ReadKey().Key;
+                switch (keyinput)
+                {
+                    case ConsoleKey.UpArrow:
+                        amountofsugar++;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        amountofsugar--;
+                        break;
+                    case ConsoleKey.Enter:
+                        keepGoing = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        public void AdjustIce()
+        {
+            bool keepGoing = true;
+            while (keepGoing == true)
+            {
+                Console.Clear();
+                Console.WriteLine($"Your pitchers currently use {amountofice} ice. Use up/down arrows to adjust. Hit 'enter' when done.");
+                ConsoleKey keyinput = Console.ReadKey().Key;
+                switch (keyinput)
+                {
+                    case ConsoleKey.UpArrow:
+                        amountofice++;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        amountofice--;
+                        break;
+                    case ConsoleKey.Enter:
+                        keepGoing = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
