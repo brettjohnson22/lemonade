@@ -9,14 +9,15 @@ namespace LemonadeStand
     class Day
     {
         //member variables (HAS A)
-        //public int dayNumber;
+        public int dayNumber;
         public Weather weather;
-        public Customer[] potentialbuyers;
-        public double actualbuyers;
+        //public Customer[] potentialbuyers;
+        //public double actualbuyers;
 
         //constructor (SPAWNER)
-        public Day()
+        public Day(int dayNumber)
         {
+            this.dayNumber = dayNumber;
             weather = new Weather();
         }
         //member methods (CAN DO)

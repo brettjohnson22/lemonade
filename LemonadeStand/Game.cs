@@ -32,15 +32,18 @@ namespace LemonadeStand
         }
         public void EachDay()
         {
-            day = new Day();
             daycounter++;
+            day = new Day(daycounter);
             bool valid = false;
             while (!valid)
             {
-                UI.DailyText(daycounter, day.weather.forecast, player1.myInventory.myWallet);
+                UI.DailyText(day, player1.myInventory);
                 string input = Console.ReadLine();
                 switch (input)
                 {
+                    case "recipe":
+                        ChangeRecipe();
+                        break;
                     case "store":
                         GoToStore();
                         break;
@@ -50,12 +53,12 @@ namespace LemonadeStand
                 }
             }
             double price = GetPrice();
-            double cups = MakeCups();
+            double cups = MakePitchers(player1.myInventory);
             double cost = GetCost();
             double sales = DetermineSales(cups);
             double profit = ResolveDay(price, sales);
             player1.myInventory.myWallet = UpdateWallet(player1.myInventory.myWallet, cost, cups, profit);
-            UI.EndOfDay(daycounter, price, profit, player1.myInventory.myWallet);
+            UI.EndOfDay(day, price, profit, player1.myInventory.myWallet);
             Console.ReadLine();
         }
         public double GetPrice()
@@ -69,11 +72,12 @@ namespace LemonadeStand
             double cost = 1;
             return cost;
         }
-        public double MakeCups()
+        public double MakePitchers(Inventory inv)
         {
-            Console.WriteLine("\nHow many cups will you make today?");
-            double cups = double.Parse(Console.ReadLine());
-            return cups;
+            Console.WriteLine($"\nYou have {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\nEach pitcher uses {inv.myrecipe.amountoflemons} lemons, {inv.myrecipe.amountofsugar} sugar, and {inv.myrecipe.amountofice} ice.\n8 cups in a pitcher. How many pitchers will you make today?");
+            int pitchers = int.Parse(Console.ReadLine());
+            
+            return pitchers;
         }
         public double DetermineSales(double cups)
         {
@@ -116,6 +120,10 @@ namespace LemonadeStand
                         break;
                 }
             }
+        }
+        public void ChangeRecipe()
+        {
+
         }
         public void RunWeek()
         {

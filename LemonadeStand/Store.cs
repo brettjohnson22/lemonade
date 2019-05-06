@@ -65,7 +65,7 @@ namespace LemonadeStand
             {
                 inv.ice = ice + icesale;
                 inv.myWallet = wallet - icecost;
-                Console.WriteLine($"\nBought 10 ice for 5 dollars. Current lemons: {inv.ice}. Current funds: ${inv.myWallet}.");
+                Console.WriteLine($"\nBought 10 ice for 5 dollars. Current ice: {inv.ice}. Current funds: ${inv.myWallet}.");
             }
             else
             {

@@ -11,18 +11,19 @@ namespace LemonadeStand
         //member variables (HAS A)
         public string forecast;
         public List<string> conditions;
-        public double temperature;
+        public string actualweather;
+        //public double temperature;
 
 
         //constructor (SPAWNER)
         public Weather()
         {
-            forecast = "50% chance of rain";
-          
+            actualweather = DetermineWeather();
+            forecast = DetermineForecast();
         }
 
         //member methods (CAN DO)
-        public string DetermineConditions()
+        public string DetermineWeather()
         {
             conditions = new List<string>() { "sunny", "cloudy", "rainy", "storming" };
             Random rand = new Random();
@@ -32,7 +33,8 @@ namespace LemonadeStand
         }
         public string DetermineForecast()
         {
-
+            forecast = "50% chance of rain";
+            return forecast;
         }
     }
 }

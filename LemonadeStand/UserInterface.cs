@@ -20,13 +20,13 @@ namespace LemonadeStand
             Console.WriteLine("In this game, you will be running a Lemonade Stand over the course of a week. You will set the price each day.");
         }
 
-        public void DailyText(int daynumber, string forecast, double walletamount)
+        public void DailyText(Day day, Inventory inv)
         {
-            Console.WriteLine("\nWelcome to Day " + daynumber + ". Today's forecast is " + forecast + ". You have $" + walletamount + ".\n\nGo to store or proceed? Type 'store' or 'proceed'.");
+            Console.WriteLine($"\nWelcome to Day {day.dayNumber}. Today's forecast is " + day.weather.forecast + $". You have ${inv.myWallet}, and {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nGo to store, change recipe, or proceed? Type 'store', 'recipe', or 'proceed'.");
         }
-        public void EndOfDay(int daynumber, double price, double profit, double walletamount)
+        public void EndOfDay(Day day, double price, double profit, double walletamount)
         {
-            Console.WriteLine("\nToday was Day " + daynumber + ". You charged $" + price + " per cup, and made $" + profit + ". You now have $" + walletamount + "." );
+            Console.WriteLine($"\nToday was Day {day.dayNumber}. You charged $" + price + " per cup, and made $" + profit + ". You now have $" + walletamount + "." );
         }
     }
 }
