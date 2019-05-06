@@ -38,6 +38,7 @@ namespace LemonadeStand
             while (!valid)
             {
                 UI.DailyText(day, player1.myInventory);
+                UI.OptionPrompt();
                 string input = Console.ReadLine();
                 switch (input)
                 {
@@ -74,6 +75,7 @@ namespace LemonadeStand
         }
         public double MakePitchers(Inventory inv)
         {
+            Console.Clear();
             Console.WriteLine($"\nYou have {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.\n8 cups in a pitcher. How many pitchers will you make today?");
             int pitchers = int.Parse(Console.ReadLine());
             
@@ -97,21 +99,25 @@ namespace LemonadeStand
         }
         public void GoToStore()
         {
+            UI.DailyText(day, player1.myInventory);
             bool valid = false;
             while (!valid)
             {
-                Console.WriteLine("\nWhat do you want to buy? Type 'lemons', 'sugar', 'ice', or 'exit'.");
+                UI.StorePrices(store);
                 string input = Console.ReadLine();
                 switch (input)
                 {
                     case "lemons":
                         store.SellLemons(player1.myInventory);
+                        UI.DailyText(day, player1.myInventory);
                         break;
                     case "sugar":
                         store.SellSugar(player1.myInventory);
+                        UI.DailyText(day, player1.myInventory);
                         break;
                     case "ice":
                         store.SellIce(player1.myInventory);
+                        UI.DailyText(day, player1.myInventory);
                         break;
                     case "exit":
                         valid = true;

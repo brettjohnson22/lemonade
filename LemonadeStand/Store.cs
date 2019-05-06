@@ -35,7 +35,7 @@ namespace LemonadeStand
             {
                 inv.lemons = lem + lemonsale;
                 inv.myWallet = wallet - lemoncost;
-                Console.WriteLine($"\nBought 10 lemons for 5 dollars. Current lemons: {inv.lemons}. Current funds: ${inv.myWallet}.");
+                //Console.WriteLine($"\nBought 10 lemons for 5 dollars. Current lemons: {inv.lemons}. Current funds: ${inv.myWallet}.");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace LemonadeStand
             {
                 inv.sugar = sug + sugarsale;
                 inv.myWallet = wallet - sugarcost;
-                Console.WriteLine($"\nBought 10 sugar for 5 dollars. Current sugar: {inv.sugar}. Current funds: ${inv.myWallet}.");
+                //Console.WriteLine($"\nBought 10 sugar for 5 dollars. Current sugar: {inv.sugar}. Current funds: ${inv.myWallet}.");
             }
             else
             {
@@ -65,7 +65,7 @@ namespace LemonadeStand
             {
                 inv.ice = ice + icesale;
                 inv.myWallet = wallet - icecost;
-                Console.WriteLine($"\nBought 10 ice for 5 dollars. Current ice: {inv.ice}. Current funds: ${inv.myWallet}.");
+                //Console.WriteLine($"\nBought 10 ice for 5 dollars. Current ice: {inv.ice}. Current funds: ${inv.myWallet}.");
             }
             else
             {
