@@ -18,17 +18,17 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public void IntroText()
         {
-            Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day.\n\nThe weather and your recipe will affect sales. How much can you make in 7 days?\n\nHit 'Enter' to start.");
+            Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day.\n\nThe weather and your recipe will affect sales.\nThere's also a small chance of a terrible misfortune affecting your supplies on any day.\n\nHow much can you make in 7 days?\n\nHit 'Enter' to start.");
             Console.ReadLine();
         }
         public void DailyText(Day day, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\nToday's forecast is {day.weather.forecast}.\nYou have ${inv.myWallet}.\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.");
+            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.\n");
         }
         public void StorePrices(Store store)
         {
-            Console.WriteLine($"\n{store.lemonsale} lemons for ${store.lemoncost}\n{store.sugarsale} sugar for ${store.sugarcost}\n{store.icesale} ice for ${store.icecost}\n\nWhat do you want to buy?");
+            Console.WriteLine($"\nYou are at the store.\n\n{store.lemonsale} lemons for ${store.lemoncost}\n{store.sugarsale} sugar for ${store.sugarcost}\n{store.icesale} ice for ${store.icecost}\n\nWhat do you want to buy?");
             IngredientPrompt();
         }
         public void IngredientPrompt()
@@ -37,7 +37,7 @@ namespace LemonadeStand
         }
         public void OptionPrompt()
         {
-            Console.WriteLine("\nGo to store, change recipe, or proceed ?\nType 'S' for store, 'R' for recipe', or 'P' to proceed.");
+            Console.WriteLine("\nGo to store, change recipe, or proceed?\nType 'S' for store, 'R' for recipe', or 'P' to proceed.");
         }
         public void EndOfDay(Day day, double customers, double price, double sales, Inventory inv)
         {

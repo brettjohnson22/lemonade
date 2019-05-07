@@ -41,18 +41,17 @@ namespace LemonadeStand
         }
         public string DetermineForecast(double temp, string weather)
         {
-            forecast = "";
             if(temp < 62)
             {
-                forecast += "cool ";
+                forecast = "cool ";
             }
-            else if (temp > 62 && temp < 78)
+            else if (temp >= 62 && temp < 79)
             {
-                forecast += "warm ";
+                forecast = "warm ";
             }
             else
             {
-                forecast += "hot ";
+                forecast = "hot ";
             }
             Random rand = new Random();
             double chaos = rand.Next(5);
@@ -66,7 +65,7 @@ namespace LemonadeStand
                         forecast += "and sunshine likely";
                         break;
                     case 3:
-                        forecast += "and likely cloudy";
+                        forecast += "and possibly cloudy";
                         break;
                     case 4:
                         forecast += "with a small chance of showers";

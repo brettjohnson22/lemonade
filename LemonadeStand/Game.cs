@@ -199,7 +199,7 @@ namespace LemonadeStand
             while (!valid)
             {
                 MainDisplay();
-                Console.WriteLine("\nWhich do you want to change?");
+                Console.WriteLine("\nWhich do you want to change?\n");
                 UI.IngredientPrompt();
                 string input = Console.ReadLine();
                 switch (input.ToLower())
@@ -268,7 +268,7 @@ namespace LemonadeStand
         {
             if (daycounter == 7)
             {
-                Console.WriteLine($"Week has ended! Your total wallet amount is ${player1.myInventory.myWallet}.");
+                Console.WriteLine($"Week has ended! Your total wallet amount is ${player1.myInventory.myWallet}. Your net profit for the week is ${player1.myInventory.totalProfit}");
                 Console.ReadLine();
             }
             //else if

@@ -16,12 +16,7 @@ namespace LemonadeStand
         }
     }
 }
-//What happens before a day starts?
-//Player sees the forecast, sets a price, sets a recipe.
-//
-//Once player proceeds, the actual day triggers.
-//What happens on an actual day?
-//Actual weather is determined.
+
 //Weather determines number of customers. Randomly choose from a range that depends on weather conditions.
 //For each el in total number of customers, if (random), choose x, y, or z customer.
 //Each customer decides if they will buy a cup.
