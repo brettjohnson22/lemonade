@@ -11,7 +11,6 @@ namespace LemonadeStand
         //member variables (HAS A)
         public Inventory myInventory;
 
-
         //constructor (SPAWNER)
         public Player()
         {

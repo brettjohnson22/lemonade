@@ -21,9 +21,9 @@ namespace LemonadeStand
         {
             lemoncost = 5;
             lemonsale = 10;
-            sugarcost = 5;
+            sugarcost = 2;
             sugarsale = 10;
-            icecost = 5;
+            icecost = 3;
             icesale = 100;
         }
         //member methods (CAN DO)

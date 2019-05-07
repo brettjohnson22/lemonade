@@ -33,7 +33,5 @@ namespace LemonadeStand
 //
 
 
-
-
-    //Code out a pure version with no variety.
-    //
+//You sold a cups at $b a piece, making you $c. Today's batch cost d, so you made a net profit of e. You now have f.
+// a = customers. b = price. c = sales. d = cost * 8. e = c - d. f = wallet.

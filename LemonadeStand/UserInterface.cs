@@ -39,10 +39,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nGo to store, change recipe, or proceed ?\nType 'S' for store, 'R' for recipe', or 'P' to proceed.");
         }
-        public void EndOfDay(Day day, double price, double profit, Inventory inv)
+        public void EndOfDay(Day day, double customers, double price, double sales, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.actualweather}\n\nYou charged $" + price + " per cup, and made $" + profit + ". You now have $" + inv.myWallet + "." );
+            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.actualweather}\n\nYou sold {customers} cups at ${price} per cup, and made ${sales}. You now have $" + inv.myWallet + "." );
         }
     }
 }

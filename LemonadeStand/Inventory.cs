@@ -16,7 +16,6 @@ namespace LemonadeStand
         public double ice;
         public Recipe myRecipe;
 
-
         //constructor (SPAWNER)
         public Inventory()
         {
