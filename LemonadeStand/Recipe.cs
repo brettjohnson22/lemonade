@@ -37,13 +37,21 @@ namespace LemonadeStand
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
-                        amountoflemons--;
-                        ClearOldLine();
+                        if(amountoflemons > 1)
+                        {
+                            amountoflemons--;
+                            ClearOldLine();
+                        }
+                        else
+                        {
+                            ClearOldLine();
+                        }
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
                         break;
                     default:
+                        ClearOldLine();
                         break;
                 }
             }
@@ -64,13 +72,21 @@ namespace LemonadeStand
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
-                        amountofsugar--;
-                        ClearOldLine();
+                        if (amountofsugar > 1)
+                        {
+                            amountofsugar--;
+                            ClearOldLine();
+                        }
+                        else
+                        {
+                            ClearOldLine();
+                        }
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
                         break;
                     default:
+                        ClearOldLine();
                         break;
                 }
             }
@@ -90,13 +106,21 @@ namespace LemonadeStand
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
-                        amountofice--;
-                        ClearOldLine();
+                        if (amountofice > 1)
+                        {
+                            amountofice--;
+                            ClearOldLine();
+                        }
+                        else
+                        {
+                            ClearOldLine();
+                        }
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
                         break;
                     default:
+                        ClearOldLine();
                         break;
                 }
             }
