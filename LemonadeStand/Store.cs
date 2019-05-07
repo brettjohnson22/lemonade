@@ -19,7 +19,7 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Store()
         {
-            lemoncost = 5;
+            lemoncost = 3;
             lemonsale = 10;
             sugarcost = 2;
             sugarsale = 10;

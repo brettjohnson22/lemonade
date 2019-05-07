@@ -29,8 +29,6 @@ namespace LemonadeStand
 //Base chance to buy, impacted by different factors.
 //Temp, taste, price.
 
-///So to resolve the day, we take the number of customers who have the amount of money required and multiply it by the price per cup.
-//
 
 
 //You sold a cups at $b a piece, making you $c. Today's batch cost d, so you made a net profit of e. You now have f.

@@ -16,7 +16,7 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Recipe()
         {
-            amountoflemons = 2;
+            amountoflemons = 4;
             amountofsugar = 4;
             amountofice = 16;
         }
@@ -51,6 +51,7 @@ namespace LemonadeStand
         }
         public void AdjustSugar()
         {
+            Console.WriteLine("");
             bool keepGoing = true;
             while (keepGoing == true)
             {
@@ -100,7 +101,7 @@ namespace LemonadeStand
                 }
             }
         }
-        public void ClearOldLine()
+        private void ClearOldLine()
         {
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             int returnplacement = Console.CursorTop;
