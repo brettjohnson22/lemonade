@@ -9,29 +9,29 @@ namespace LemonadeStand
     class Store
     {
         //member variables (HAS A)
-        public int lemoncost;
-        public int lemonsale;
-        public int sugarcost;
-        public int sugarsale;
-        public int icesale;
-        public int icecost;
+        public double lemoncost;
+        public double lemonsale;
+        public double sugarcost;
+        public double sugarsale;
+        public double icesale;
+        public double icecost;
 
         //constructor (SPAWNER)
         public Store()
         {
-            lemoncost = 10;
+            lemoncost = 5;
             lemonsale = 10;
-            sugarcost = 10;
+            sugarcost = 5;
             sugarsale = 10;
-            icecost = 10;
-            icesale = 10;
+            icecost = 5;
+            icesale = 100;
         }
         //member methods (CAN DO)
         public void SellLemons(Inventory inv)
         {
             double lem = inv.lemons;
             double wallet = inv.myWallet;
-            if (wallet >= 10)
+            if (wallet >= lemoncost)
             {
                 inv.lemons = lem + lemonsale;
                 inv.myWallet = wallet - lemoncost;
@@ -46,7 +46,7 @@ namespace LemonadeStand
         {
             double sug = inv.sugar;
             double wallet = inv.myWallet;
-            if (wallet >= 10)
+            if (wallet >= sugarcost)
             {
                 inv.sugar = sug + sugarsale;
                 inv.myWallet = wallet - sugarcost;
@@ -61,7 +61,7 @@ namespace LemonadeStand
         {
             double ice = inv.ice;
             double wallet = inv.myWallet;
-            if (wallet >= 10)
+            if (wallet >= icecost)
             {
                 inv.ice = ice + icesale;
                 inv.myWallet = wallet - icecost;

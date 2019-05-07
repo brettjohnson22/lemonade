@@ -9,16 +9,16 @@ namespace LemonadeStand
     public class Recipe
     {
         //member variables (HAS A)
-        public int amountoflemons;
-        public int amountofsugar;
-        public int amountofice;
+        public double amountoflemons;
+        public double amountofsugar;
+        public double amountofice;
 
         //constructor (SPAWNER)
         public Recipe()
         {
-            amountoflemons = 4;
+            amountoflemons = 2;
             amountofsugar = 4;
-            amountofice = 4;
+            amountofice = 16;
         }
 
         //member methods (CAN DO)

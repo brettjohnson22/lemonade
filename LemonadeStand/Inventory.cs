@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         //member variables (HAS A)
         public double myWallet;
+        public double totalProfit;
         public double lemons;
         public double sugar;
         public double ice;
@@ -20,12 +21,13 @@ namespace LemonadeStand
         public Inventory()
         {
             myRecipe = new Recipe();
-            myWallet = 50;
-            lemons = 20;
+            myWallet = 10;
+            totalProfit = 0;
+            lemons = 10;
             sugar = 20;
-            ice = 20;
+            ice = 100;
         }
         //member methods (CAN DO)
-        
+
     }
 }
