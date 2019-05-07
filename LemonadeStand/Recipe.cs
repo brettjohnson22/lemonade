@@ -27,8 +27,7 @@ namespace LemonadeStand
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.Clear();
-                Console.WriteLine($"Your pitchers currently use {amountoflemons} lemons. Use up/down arrows to adjust. Hit 'enter' when done.");
+                Console.WriteLine($"You will be using {amountoflemons} lemons. Use up/down arrows to adjust. Hit 'enter' when done.");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
@@ -52,8 +51,7 @@ namespace LemonadeStand
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.Clear();
-                Console.WriteLine($"Your pitchers currently use {amountofsugar} sugar. Use up/down arrows to adjust. Hit 'enter' when done.");
+                Console.WriteLine($"You will be using {amountofsugar} sugar. Use up/down arrows to adjust. Hit 'enter' when done.");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
@@ -76,8 +74,7 @@ namespace LemonadeStand
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.Clear();
-                Console.WriteLine($"Your pitchers currently use {amountofice} ice. Use up/down arrows to adjust. Hit 'enter' when done.");
+                Console.WriteLine($"You will be using {amountofice} ice. Use up/down arrows to adjust. Hit 'enter' when done.");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {

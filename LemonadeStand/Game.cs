@@ -34,27 +34,19 @@ namespace LemonadeStand
         {
             daycounter++;
             day = new Day(daycounter);
-            bool valid = false;
-            while (!valid)
-            {
-                UI.DailyText(day, player1.myInventory);
-                UI.OptionPrompt();
-                string input = Console.ReadLine();
-                switch (input)
-                {
-                    case "recipe":
-                        ChangeRecipe();
-                        break;
-                    case "store":
-                        GoToStore();
-                        break;
-                    case "proceed":
-                        valid = true;
-                        break;
-                }
-            }
+            MainOptions();
             double price = GetPrice();
             double cups = MakePitchers(player1.myInventory);
+            if(cups == 0)
+            {
+                MainOptions();
+            }
+           // }
+            //else
+            //{
+            //    Console.WriteLine("You don't have enough supplies to make a pitcher. Buy more ingredients or adjust your recipe.");
+            //    double cups = 0;
+            //}
             double cost = GetCost();
             double sales = DetermineSales(cups);
             double profit = ResolveDay(price, sales);
@@ -76,10 +68,17 @@ namespace LemonadeStand
         public double MakePitchers(Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nYou have {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.\n8 cups in a pitcher. How many pitchers will you make today?");
+            Console.WriteLine($"\nYou have {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.\n8 cups in a pitcher. How many pitchers will you make today? Type '0' to go back.");
             int pitchers = int.Parse(Console.ReadLine());
-            
-            return pitchers;
+            if (pitchers * inv.myRecipe.amountoflemons <= inv.lemons && pitchers * inv.myRecipe.amountofsugar <= inv.sugar && pitchers * inv.myRecipe.amountofice <= inv.ice)
+            {
+                return pitchers;
+            }
+            else 
+            {
+                Console.WriteLine("You don't have enough supplies");
+                return 0;
+            }
         }
         public double DetermineSales(double cups)
         {
@@ -96,6 +95,28 @@ namespace LemonadeStand
         {
             double profit = price * customers;
             return profit;
+        }
+        public void MainOptions()
+        {
+            bool valid = false;
+            while (!valid)
+            {
+                UI.DailyText(day, player1.myInventory);
+                UI.OptionPrompt();
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "recipe":
+                        ChangeRecipe();
+                        break;
+                    case "store":
+                        GoToStore();
+                        break;
+                    case "proceed":
+                        valid = true;
+                        break;
+                }
+            }
         }
         public void GoToStore()
         {
@@ -128,21 +149,25 @@ namespace LemonadeStand
             }
         }
         public void ChangeRecipe()
-        {
+        { 
             bool valid = false;
             while (!valid)
             {
-                Console.WriteLine($"Your current recipe is {player1.myInventory.myRecipe.amountoflemons} lemons, {player1.myInventory.myRecipe.amountofsugar} sugar, and {player1.myInventory.myRecipe.amountofice} ice.\nWhich do you want to change? Type 'lemons', 'sugar', 'ice', or 'exit'.");
+                UI.DailyText(day, player1.myInventory);
+                Console.WriteLine("\nWhich do you want to change? Type 'lemons', 'sugar', 'ice', or 'exit'.");
                 string input = Console.ReadLine();
                 switch (input)
                 {
                     case "lemons":
+                        UI.DailyText(day, player1.myInventory);
                         player1.myInventory.myRecipe.AdjustLemons();
                         break;
                     case "sugar":
+                        UI.DailyText(day, player1.myInventory);
                         player1.myInventory.myRecipe.AdjustSugar();
                         break;
                     case "ice":
+                        UI.DailyText(day, player1.myInventory);
                         player1.myInventory.myRecipe.AdjustIce();
                         break;
                     case "exit":
@@ -153,11 +178,16 @@ namespace LemonadeStand
                 }
             }
         }
+        public void IceMelt()
+        {
+            player1.myInventory.ice = 0;
+            Console.WriteLine("Your excess ice has melted. You must buy more!");
+        }
         public void RunWeek()
         {
             while(daycounter < 7)
             {
-                EachDay();                
+                EachDay();
             }
         }
         public void GameOver()

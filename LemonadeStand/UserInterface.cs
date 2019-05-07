@@ -11,13 +11,16 @@ namespace LemonadeStand
         //member variables (HAS A)
 
         //constructor (SPAWNER)
+        public UserInterface()
+        {
+
+        }
 
         //member methods (CAN DO)
         public void IntroText()
         {
-            Console.WriteLine("Welcome to Lemonade Stand!");
+            Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day.\n\nThe weather and your recipe will affect sales. How much can you make in 7 days?\n\nHit 'Enter' to start.");
             Console.ReadLine();
-            Console.WriteLine("In this game, you will be running a Lemonade Stand over the course of a week. You will set the price each day.");
         }
 
         public void DailyText(Day day, Inventory inv)
@@ -27,7 +30,7 @@ namespace LemonadeStand
         }
         public void StorePrices(Store store)
         {
-            Console.WriteLine($"\n{store.lemonsale} lemons for ${store.lemoncost}\n{store.sugarsale} sugar for ${store.sugarcost}\n{store.icesale} ice for ${store.icecost}\nWhat do you want to buy? Type 'lemons', 'sugar', or 'ice'.");
+            Console.WriteLine($"\n{store.lemonsale} lemons for ${store.lemoncost}\n{store.sugarsale} sugar for ${store.sugarcost}\n{store.icesale} ice for ${store.icecost}\n\nWhat do you want to buy? Type 'lemons', 'sugar', or 'ice'.");
         }
         public void OptionPrompt()
         {
