@@ -24,6 +24,7 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public void AdjustLemons()
         {
+            Console.WriteLine("");
             bool keepGoing = true;
             while (keepGoing == true)
             {
@@ -33,9 +34,11 @@ namespace LemonadeStand
                 {
                     case ConsoleKey.UpArrow:
                         amountoflemons++;
+                        ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         amountoflemons--;
+                        ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
@@ -57,9 +60,11 @@ namespace LemonadeStand
                 {
                     case ConsoleKey.UpArrow:
                         amountofsugar++;
+                        ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         amountofsugar--;
+                        ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
@@ -71,6 +76,7 @@ namespace LemonadeStand
         }
         public void AdjustIce()
         {
+            Console.WriteLine("");
             bool keepGoing = true;
             while (keepGoing == true)
             {
@@ -80,9 +86,11 @@ namespace LemonadeStand
                 {
                     case ConsoleKey.UpArrow:
                         amountofice++;
+                        ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         amountofice--;
+                        ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
@@ -91,6 +99,14 @@ namespace LemonadeStand
                         break;
                 }
             }
+        }
+        public void ClearOldLine()
+        {
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            int returnplacement = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, returnplacement);
         }
     }
 }

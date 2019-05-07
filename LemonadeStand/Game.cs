@@ -85,11 +85,11 @@ namespace LemonadeStand
         public double MakePitchers(Inventory inv, double price)
         {
             MainDisplay();
-            int pitchers = 0;
+            double pitchers = 0;
             Console.WriteLine($"\nCharging ${price} per cup. Each pitcher makes {cupsPerPitcher} cups.\nHow many pitchers will you make today?");
             try
             {
-                pitchers = int.Parse(Console.ReadLine());
+                pitchers = double.Parse(Console.ReadLine());
             }
             catch (FormatException)
             {
@@ -105,9 +105,18 @@ namespace LemonadeStand
             }
             else 
             {
-                Console.WriteLine("You don't have enough supplies!");
-                Console.ReadLine();
-                return 0;
+                Console.WriteLine("You don't have enough supplies. Buy more? 'Y' for yes, 'N' for no.");
+                string input = Console.ReadLine();
+                switch (input.ToLower())
+                {
+                    case "y":
+                        MainOptions();
+                        break;
+                    case "n":
+                        break;
+                }
+                pitchers = MakePitchers(inv, price);
+                return pitchers;
             }
         }
         public double DetermineCustomers(double pitchers)
@@ -254,7 +263,7 @@ namespace LemonadeStand
         }
         public void RunWeek()
         {
-            while(daycounter < 7)
+            while (daycounter < 7 && player1.myInventory.myWallet >= 0)
             {
                 EachDay();
                 IceMelt();
