@@ -36,7 +36,7 @@ namespace LemonadeStand
         public double DetermineTemperature()
         {
             Random rand = new Random();
-            double temp = rand.Next(50, 90);
+            double temp = rand.Next(55, 90);
             return temp;
         }
         public string DetermineForecast(double temp, string weather)
@@ -69,7 +69,7 @@ namespace LemonadeStand
                         forecast += "and likely cloudy";
                         break;
                     case 4:
-                        forecast += "with a chance of showers";
+                        forecast += "with a small chance of showers";
                         break;
                 }
             }
@@ -83,7 +83,7 @@ namespace LemonadeStand
                         break;
                     case 2:
                     case 3:
-                        forecast += "with a chance of showers";
+                        forecast += "with a small chance of showers";
                         break;
                     case 4:
                         forecast += "and sunshine likely";
@@ -95,10 +95,12 @@ namespace LemonadeStand
                 switch (chaos)
                 {
                     case 0:
+                        forecast += "with a small chance of showers";
+                        break;
                     case 1:
+                    case 2:
                         forecast += "and rain likely";
                         break;
-                    case 2:
                     case 3:
                         forecast += "with a chance of showers";
                         break;

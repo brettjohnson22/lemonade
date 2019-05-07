@@ -255,23 +255,23 @@ namespace LemonadeStand
         {
             Inv.totalProfit += dailyprofit;
         }
-        public void IceMelt()
-        {
-            player1.myInventory.ice = 0;
-            Console.WriteLine("Your excess ice has melted. You must buy more!");
-            Console.ReadLine();
-        }
         public void RunWeek()
         {
             while (daycounter < 7 && player1.myInventory.myWallet >= 0)
             {
                 EachDay();
-                IceMelt();
+                player1.myInventory.TerribleMisfortune();
             }
+            GameOver();
         }
         public void GameOver()
         {
-            Console.WriteLine($"Week has ended! Your total wallet amount is ${player1.myInventory.myWallet}.");
+            if (daycounter == 7)
+            {
+                Console.WriteLine($"Week has ended! Your total wallet amount is ${player1.myInventory.myWallet}.");
+                Console.ReadLine();
+            }
+            //else if
         }
     }
 }
