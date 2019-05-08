@@ -21,35 +21,87 @@ namespace LemonadeStand
             weather = new Weather();
         }
         //member methods (CAN DO)
-        public double DetermineCustomers(Weather weather, double pitchers)
+        public double DetermineCustomers(Weather weather, Recipe recipe, double pitchers, double price)
         {
+            actualbuyers = 0;
+            potentialBuyers = new List<Customer>();
             double numberOfPotential = 0;
             double cups = pitchers * Game.cupsPerPitcher;
             Random rand = new Random();
             if (weather.actualweather == "sunny and dry")
             {
-                numberOfPotential = rand.Next(40, 55);
+                numberOfPotential = cups;
             }
             else if (weather.actualweather == "sunny")
             {
-                numberOfPotential = rand.Next(30, 45);
+                if (cups >= 45)
+                {
+                    numberOfPotential = rand.Next(30, 45);
+                }
+                else
+                {
+                    numberOfPotential = cups;
+                }
             }
             else if (weather.actualweather == "cloudy")
             {
-                numberOfPotential = rand.Next(20, 30);
+                if (cups >= 30)
+                {
+                    numberOfPotential = rand.Next(20, 30);
+                }
+                else
+                {
+                    numberOfPotential = cups;
+                }
+                
             }
             else if (weather.actualweather == "rainy")
             {
-                numberOfPotential = rand.Next(5, 15);
+                if (cups >= 15)
+                {
+                    numberOfPotential = rand.Next(5, 15);
+                }
+                else
+                {
+                    numberOfPotential = cups;
+                }
             }
             else if(weather.actualweather == "storming")
             {
-                numberOfPotential = rand.Next(10);
+                if (cups >= 10)
+                {
+                    numberOfPotential = rand.Next(11);
+                }
+                else
+                {
+                    numberOfPotential = cups;
+                }
             }
-
-            //Will eventually be the full algorhythm to determine number of sales
-            //double customers = cups;
-            //return customers;
+            for(int i = 0; i < numberOfPotential; i++)
+            {
+                Random personalityDeterminer = new Random();
+                int personality = personalityDeterminer.Next(6);
+                if(personality == 0)
+                {
+                    potentialBuyers.Add(new SourPuss());
+                }
+                else if(personality == 1 || personality == 2)
+                {
+                    potentialBuyers.Add(new SweetTooth());
+                }
+                else
+                {
+                    potentialBuyers.Add(new Customer());
+                }
+            }
+            foreach(Customer customer in potentialBuyers)
+            {
+                if (customer.DecideToBuy(weather, recipe, price))
+                {
+                    actualbuyers++;
+                }
+            }
+            return actualbuyers;
         }
 
     }

@@ -6,48 +6,43 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customer
+    class SweetTooth : Customer
     {
         //member variables (HAS A)
-        public double customerWallet;
 
         //constructor (SPAWNER)
-        public Customer()
-        {
-            Random rand = new Random();
-            customerWallet = rand.Next(1, 7);
-        }
+
         //member methods (CAN DO)
-        public virtual bool DecideToBuy(Weather weather, Recipe recipe, double price)
+        public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
             bool decision = false;
             double decisionfactors = 0;
-            if(weather.actualweather == "sunny & dry" && price < customerWallet + 1)
+            if ((weather.actualweather == "Sunny & dry") && (price < customerWallet + 1))
             {
                 decisionfactors++;
                 decisionfactors++;
             }
-            if(weather.actualweather == "sunny")
+            if (weather.temperature > 80 && recipe.amountofice > 16)
             {
                 decisionfactors++;
             }
-            if(weather.temperature > 80 && recipe.amountofice > 16)
+            if (weather.temperature < 65 && recipe.amountofice < 10)
             {
                 decisionfactors++;
             }
-            if(weather.temperature < 65 && recipe.amountofice < 10)
+            if (price <= customerWallet)
             {
                 decisionfactors++;
             }
-            if(price <= customerWallet)
+            if (recipe.amountofsugar > 4)
             {
                 decisionfactors++;
             }
-            if(recipe.amountofsugar >= recipe.amountoflemons)
+            if (recipe.amountoflemons > 3)
             {
-                decisionfactors++;
+                decisionfactors--;
             }
-            if(weather.actualweather == "storming")
+            if (weather.actualweather == "storming")
             {
                 decisionfactors--;
             }

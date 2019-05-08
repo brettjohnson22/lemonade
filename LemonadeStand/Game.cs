@@ -57,7 +57,7 @@ namespace LemonadeStand
                 MainDisplay();
                 pitchers = MakePitchers(player1.myInventory, price);
             }
-            double customers = DetermineCustomers(day.weather, pitchers);
+            double customers = day.DetermineCustomers(day.weather, player1.myInventory.myRecipe, pitchers, price);
             double sales = TotalSales(price, customers);
             double dailyexpense = DailyExpense(pitchers);
             double dailyprofit = DailyProfits(sales, dailyexpense);
@@ -70,7 +70,7 @@ namespace LemonadeStand
         {
             MainDisplay();
             double price = 0;
-            Console.WriteLine("\nWhat will you set today's price at?");
+            Console.WriteLine("\nWhat will you set today's price at? (In dollars)");
             try
             {
                 price = double.Parse(Console.ReadLine());
@@ -116,13 +116,6 @@ namespace LemonadeStand
                 pitchers = MakePitchers(inv, price);
                 return pitchers;
             }
-        }
-        public double DetermineCustomers(Weather weather, double pitchers)
-        {
-            double cups = pitchers * cupsPerPitcher;
-            //Will eventually be the full algorhythm to determine number of sales
-            double customers = cups;
-            return customers;
         }
         public double TotalSales(double price, double customers)
         {
@@ -269,7 +262,7 @@ namespace LemonadeStand
                 Console.WriteLine($"Week has ended! Your total wallet amount is ${player1.myInventory.myWallet}. Your net profit for the week is ${player1.myInventory.totalProfit}");
                 Console.ReadLine();
             }
-            //else if
+            //else if player ran out of money
         }
     }
 }

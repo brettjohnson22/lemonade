@@ -16,7 +16,7 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Recipe()
         {
-            amountoflemons = 4;
+            amountoflemons = 3;
             amountofsugar = 4;
             amountofice = 16;
         }
