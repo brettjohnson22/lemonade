@@ -60,7 +60,7 @@ namespace LemonadeStand
             {
                 decisionfactors++;
             }
-            if (recipe.amountoflemons > 3)
+            if (recipe.amountoflemons > recipe.amountofsugar)
             {
                 decisionfactors--;
             }

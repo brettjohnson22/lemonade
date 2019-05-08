@@ -26,9 +26,9 @@ namespace LemonadeStand
             Console.Clear();
             Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.\n");
         }
-        public static void StorePrices(Store store)
+        public static void StorePrices()
         {
-            Console.WriteLine($"\nYou are at the store.\n\n{store.lemonsale} lemons for ${store.lemoncost}\n{store.sugarsale} sugar for ${store.sugarcost}\n{store.icesale} ice for ${store.icecost}\n\nWhat do you want to buy?");
+            Console.WriteLine($"\nYou are at the store.\n\n{Store.Lemonsale} lemons for ${Store.Lemoncost}\n{Store.Sugarsale} sugar for ${Store.Sugarcost}\n{Store.Icesale} ice for ${Store.Icecost}\n\nWhat do you want to buy?");
             IngredientPrompt();
         }
         public static void IngredientPrompt()

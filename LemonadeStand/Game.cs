@@ -12,7 +12,6 @@ namespace LemonadeStand
         
         public Player player1;
         public Day day;
-        public Store store;
         public int daycounter;
         public static double cupsPerPitcher;
 
@@ -26,7 +25,6 @@ namespace LemonadeStand
         {
             
             player1 = new Player();
-            store = new Store();
             daycounter = 0;
             cupsPerPitcher = 8;
             UserInterface.IntroText();
@@ -155,26 +153,26 @@ namespace LemonadeStand
             bool valid = false;
             while (!valid)
             {
-                UserInterface.StorePrices(store);
+                UserInterface.StorePrices();
                 string input = Console.ReadLine();
                 switch (input.ToLower())
                 {
                     case "lemons":
                         goto case "l";
                     case "l":
-                        store.SellLemons(player1.myInventory);
+                        Store.SellLemons(player1.myInventory);
                         MainDisplay();
                         break;
                     case "sugar":
                         goto case "s";
                     case "s":
-                        store.SellSugar(player1.myInventory);
+                        Store.SellSugar(player1.myInventory);
                         MainDisplay();
                         break;
                     case "ice":
                         goto case "i";
                     case "i":
-                        store.SellIce(player1.myInventory);
+                        Store.SellIce(player1.myInventory);
                         MainDisplay();
                         break;
                     case "p":
@@ -224,7 +222,7 @@ namespace LemonadeStand
         }
         public double CalculateCost()
         {
-            double costofpitcher = (player1.myInventory.myRecipe.amountoflemons * (store.lemoncost / store.lemonsale) + player1.myInventory.myRecipe.amountofsugar * (store.sugarcost / store.sugarsale) + player1.myInventory.myRecipe.amountofice * (store.icecost / store.icesale));
+            double costofpitcher = (player1.myInventory.myRecipe.amountoflemons * (Store.Lemoncost / Store.Lemonsale) + player1.myInventory.myRecipe.amountofsugar * (Store.Sugarcost / Store.Sugarsale) + player1.myInventory.myRecipe.amountofice * (Store.Icecost / Store.Icesale));
             double costofcup = Math.Round(costofpitcher / cupsPerPitcher, 2);
             return costofcup;
         }
