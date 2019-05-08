@@ -41,9 +41,13 @@ namespace LemonadeStand
             {
                 temp = rand.Next(75, 95);
             }
+            else if (actualweather == "sunny")
+            {
+                temp = rand.Next(70, 85);
+            }
             else
             {
-                temp = rand.Next(55, 90);
+                temp = rand.Next(55, 80);
             }
             return temp;
         }

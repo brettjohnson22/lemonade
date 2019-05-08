@@ -20,58 +20,35 @@ namespace LemonadeStand
             weather = new Weather();
         }
         //member methods (CAN DO)
-        public double DetermineNumberOfPotentialCustomers(Weather weather, double pitchers)
+        public double DetermineNumberOfPotentialCustomers(Weather weather)
         {
             double numberOfPotential = 0;
-            double cups = pitchers * Game.cupsPerPitcher;
+            //double cups = pitchers * Game.cupsPerPitcher;
             Random rand = new Random();
             if (weather.actualWeather == "sunny and dry")
             {
-                numberOfPotential = cups;
+                numberOfPotential = rand.Next(25, 35);
             }
             else if (weather.actualWeather == "sunny")
             {
-                if (cups >= 30)
-                {
-                    numberOfPotential = rand.Next(20, 30);
-                }
-                else
-                {
-                    numberOfPotential = cups;
-                }
+                numberOfPotential = rand.Next(20, 30);
             }
             else if (weather.actualWeather == "cloudy")
             {
-                if (cups >= 20)
                 {
                     numberOfPotential = rand.Next(10, 20);
                 }
-                else
-                {
-                    numberOfPotential = cups;
-                }
-
             }
             else if (weather.actualWeather == "rainy")
             {
-                if (cups >= 15)
                 {
                     numberOfPotential = rand.Next(5, 15);
-                }
-                else
-                {
-                    numberOfPotential = cups;
                 }
             }
             else if (weather.actualWeather == "storming")
             {
-                if (cups >= 10)
                 {
                     numberOfPotential = rand.Next(11);
-                }
-                else
-                {
-                    numberOfPotential = cups;
                 }
             }
             return numberOfPotential;
@@ -106,7 +83,7 @@ namespace LemonadeStand
             }
             return potentialCustomers;
         }
-        public double DetermineActualCustomers(Weather weather, Recipe recipe, List<Customer> potentialBuyers, double price)
+        public double DeterminePayingCustomers(Weather weather, Recipe recipe, List<Customer> potentialBuyers, double cups, double price)
         {
             double actualCustomers = 0;
             foreach (Customer customer in potentialBuyers)
@@ -116,7 +93,14 @@ namespace LemonadeStand
                     actualCustomers++;
                 }
             }
-            return actualCustomers;
+            if (actualCustomers < cups)
+            {
+                return actualCustomers;
+            }
+            else
+            {
+                return cups;
+            }
         }
 
     }

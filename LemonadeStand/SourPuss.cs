@@ -65,7 +65,7 @@ namespace LemonadeStand
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (decisionFactors > 3)
+            if (decisionFactors >=2)
             {
                 decision = true;
             }

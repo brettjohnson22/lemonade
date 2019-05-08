@@ -26,7 +26,7 @@ namespace LemonadeStand
             
             player1 = new Player();
             dayCounter = 0;
-            cupsPerPitcher = 8;
+            cupsPerPitcher = 6;
             UserInterface.IntroText();
         }
         public void MainDisplay()
@@ -55,9 +55,10 @@ namespace LemonadeStand
                 MainDisplay();
                 pitchers = MakePitchers(player1.myInventory, price);
             }
-            double numberOfPotentialCustomers = day.DetermineNumberOfPotentialCustomers(day.weather, pitchers);
+            double cups = player1.PourCups(pitchers);
+            double numberOfPotentialCustomers = day.DetermineNumberOfPotentialCustomers(day.weather);
             List<Customer> potentialCustomers = day.GiveCustomersPersonalities(numberOfPotentialCustomers);
-            double actualCustomers = day.DetermineActualCustomers(day.weather, player1.myInventory.myRecipe, potentialCustomers, price);
+            double actualCustomers = day.DeterminePayingCustomers(day.weather, player1.myInventory.myRecipe, potentialCustomers, cups, price);
             double sales = TotalSales(price, actualCustomers);
             double dailyexpense = DailyExpense(pitchers);
             double dailyprofit = DailyProfits(sales, dailyexpense);

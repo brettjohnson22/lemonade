@@ -17,5 +17,10 @@ namespace LemonadeStand
             myInventory = new Inventory();
         }
         //member methods (CAN DO)
+        public double PourCups(double pitchers)
+        {
+            double cups = pitchers * Game.cupsPerPitcher;
+            return cups;
+        }
     }
 }
