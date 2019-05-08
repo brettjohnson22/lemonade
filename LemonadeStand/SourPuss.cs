@@ -11,13 +11,19 @@ namespace LemonadeStand
         //member variables (HAS A)
 
         //constructor (SPAWNER)
+        public SourPuss()
+        {
+
+        }
 
         //member methods (CAN DO)
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
+            Random rand = new Random();
+            customerWallet = rand.Next(1, 6);
             bool decision = false;
             double decisionfactors = 0;
-            if ((weather.actualweather == "Sunny & dry") && (price < customerWallet + 1))
+            if (weather.actualweather == "sunny and dry" && price < 6)
             {
                 decisionfactors++;
                 decisionfactors++;
@@ -26,15 +32,11 @@ namespace LemonadeStand
             {
                 decisionfactors++;
             }
-            if (weather.temperature >= 65 && weather.temperature <= 80 & recipe.amountofice > 10 && recipe.amountofice <= 16)
+            if (weather.temperature < 63 && recipe.amountofice <= 12)
             {
                 decisionfactors++;
             }
-            if (weather.temperature < 65 && recipe.amountofice <= 10)
-            {
-                decisionfactors++;
-            }
-            if (price <= customerWallet - 1)
+            if (price < customerWallet)
             {
                 decisionfactors++;
             }
@@ -45,17 +47,18 @@ namespace LemonadeStand
             if (weather.actualweather == "rainy" || weather.actualweather == "storming")
             {
                 decisionfactors--;
+                decisionfactors--;
             }
-            if (price > 5)
+            if (price > 3)
             {
                 decisionfactors--;
             }
-            if (price > 7)
+            if (price > customerWallet)
             {
                 decisionfactors--;
                 decisionfactors--;
             }
-            if (decisionfactors >= 2)
+            if (decisionfactors > 3)
             {
                 decision = true;
             }

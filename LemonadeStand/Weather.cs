@@ -19,24 +19,34 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Weather()
         {
+            //actualweather = "cloudy";
+            //temperature = 66;
             actualweather = DetermineWeather();
-            temperature = DetermineTemperature(); 
+            temperature = DetermineTemperature(actualweather);
             forecast = DetermineForecast(temperature, actualweather);
         }
 
         //member methods (CAN DO)
         public string DetermineWeather()
         {
-            conditions = new List<string>() { "sunny and dry", "sunny", "sunny", "cloudy", "cloudy", "rainy", "storming" };
+            conditions = new List<string>() { "sunny and dry", "sunny", "sunny", "sunny", "cloudy", "cloudy", "rainy", "storming" };
             Random rand = new Random();
             int weatherindex = rand.Next(7);
             string actualWeather = conditions[weatherindex];
             return actualWeather;
         }
-        public double DetermineTemperature()
+        public double DetermineTemperature(string actualweather)
         {
+            double temp;
             Random rand = new Random();
-            double temp = rand.Next(55, 90);
+            if (actualweather == "sunny and dry")
+            {
+                temp = rand.Next(75, 95);
+            }
+            else
+            {
+                temp = rand.Next(55, 90);
+            }
             return temp;
         }
         public string DetermineForecast(double temp, string weather)
@@ -62,11 +72,11 @@ namespace LemonadeStand
                     case 0:
                     case 1:
                     case 2:
-                        forecast += "and sunshine likely";
+                        forecast += "with clear skies";
                         break;
                     case 3:
                     case 4:
-                        forecast += "and possibly cloudy";
+                        forecast += "and sunshine likely";
                         break;
                 }
             }
@@ -92,10 +102,12 @@ namespace LemonadeStand
                 switch (chaos)
                 {
                     case 0:
+                        forecast += "and possibly cloudy";
+                        break;
                     case 1:
+                    case 2:
                         forecast += "and likely cloudy";
                         break;
-                    case 2:
                     case 3:
                         forecast += "with a small chance of showers";
                         break;
@@ -138,7 +150,7 @@ namespace LemonadeStand
                         forecast += "with a thunderstorm watch";
                         break;
                     case 4:
-                        forecast += "and likely cloudy";
+                        forecast += "and likely overcast";
                         break;
                 }
             }

@@ -22,7 +22,7 @@ namespace LemonadeStand
             lemoncost = 4;
             lemonsale = 8;
             sugarcost = 3;
-            sugarsale = 10;
+            sugarsale = 5;
             icecost = 3;
             icesale = 100;
         }

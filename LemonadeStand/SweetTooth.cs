@@ -11,13 +11,24 @@ namespace LemonadeStand
         //member variables (HAS A)
 
         //constructor (SPAWNER)
+        public SweetTooth()
+        {
+
+        }
 
         //member methods (CAN DO)
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
+            Random rand = new Random();
+            customerWallet = rand.Next(3, 9);
             bool decision = false;
             double decisionfactors = 0;
-            if ((weather.actualweather == "Sunny & dry") && (price < customerWallet + 1))
+            if (weather.actualweather == "sunny and dry" && price < 8)
+            {
+                decisionfactors++;
+                decisionfactors++;
+            }
+            if (weather.actualweather == "sunny" && price <=5)
             {
                 decisionfactors++;
                 decisionfactors++;
@@ -26,7 +37,11 @@ namespace LemonadeStand
             {
                 decisionfactors++;
             }
-            if (weather.temperature < 65 && recipe.amountofice < 10)
+            if (weather.temperature >= 63 && weather.temperature <= 85 & recipe.amountofice > 10 && recipe.amountofice <= 16)
+            {
+                decisionfactors++;
+            }
+            if (weather.temperature < 63 && recipe.amountofice <= 12)
             {
                 decisionfactors++;
             }
@@ -34,7 +49,15 @@ namespace LemonadeStand
             {
                 decisionfactors++;
             }
+            if (recipe.amountofsugar >= recipe.amountoflemons)
+            {
+                decisionfactors++;
+            }
             if (recipe.amountofsugar > 4)
+            {
+                decisionfactors++;
+            }
+            if (price <= 2)
             {
                 decisionfactors++;
             }

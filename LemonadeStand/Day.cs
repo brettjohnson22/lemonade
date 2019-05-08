@@ -12,7 +12,6 @@ namespace LemonadeStand
         public int dayNumber;
         public Weather weather;
         public List<Customer> potentialBuyers;
-        public double actualbuyers;
 
         //constructor (SPAWNER)
         public Day(int dayNumber)
@@ -23,7 +22,7 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public double DetermineCustomers(Weather weather, Recipe recipe, double pitchers, double price)
         {
-            actualbuyers = 0;
+            double actualbuyers = 0;
             potentialBuyers = new List<Customer>();
             double numberOfPotential = 0;
             double cups = pitchers * Game.cupsPerPitcher;
@@ -34,9 +33,9 @@ namespace LemonadeStand
             }
             else if (weather.actualweather == "sunny")
             {
-                if (cups >= 45)
+                if (cups >= 30)
                 {
-                    numberOfPotential = rand.Next(30, 45);
+                    numberOfPotential = rand.Next(20, 30);
                 }
                 else
                 {
@@ -45,9 +44,9 @@ namespace LemonadeStand
             }
             else if (weather.actualweather == "cloudy")
             {
-                if (cups >= 30)
+                if (cups >= 20)
                 {
-                    numberOfPotential = rand.Next(20, 30);
+                    numberOfPotential = rand.Next(10, 20);
                 }
                 else
                 {
@@ -81,11 +80,11 @@ namespace LemonadeStand
             {
                 Random personalityDeterminer = new Random();
                 int personality = personalityDeterminer.Next(6);
-                if(personality == 0)
+                if(personality == 0 || personality == 1)
                 {
                     potentialBuyers.Add(new SourPuss());
                 }
-                else if(personality == 1 || personality == 2)
+                else if(personality == 2 || personality == 3)
                 {
                     potentialBuyers.Add(new SweetTooth());
                 }

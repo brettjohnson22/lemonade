@@ -14,15 +14,16 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Customer()
         {
-            Random rand = new Random();
-            customerWallet = rand.Next(1, 7);
+
         }
         //member methods (CAN DO)
         public virtual bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
+            Random rand = new Random();
+            customerWallet = rand.Next(2, 6);
             bool decision = false;
             double decisionfactors = 0;
-            if(weather.actualweather == "sunny & dry" && price < customerWallet + 1)
+            if(weather.actualweather == "sunny and dry" && price < 8)
             {
                 decisionfactors++;
                 decisionfactors++;
@@ -35,21 +36,33 @@ namespace LemonadeStand
             {
                 decisionfactors++;
             }
-            if(weather.temperature < 65 && recipe.amountofice < 10)
+            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountofice > 10 && recipe.amountofice <= 16)
             {
                 decisionfactors++;
             }
-            if(price <= customerWallet)
+            if (weather.temperature < 63 && recipe.amountofice <= 12)
             {
                 decisionfactors++;
             }
-            if(recipe.amountofsugar >= recipe.amountoflemons)
+            if (recipe.amountofsugar >= recipe.amountoflemons)
             {
                 decisionfactors++;
+            }
+            if (price <= customerWallet)
+            {
+                decisionfactors++;
+            }
+            if(price > customerWallet)
+            {
+                decisionfactors--;
             }
             if(weather.actualweather == "storming")
             {
                 decisionfactors--;
+            }
+            if (price <= 2)
+            {
+                decisionfactors++;
             }
             if (price > 7)
             {
