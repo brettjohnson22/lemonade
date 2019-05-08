@@ -253,7 +253,7 @@ namespace LemonadeStand
             {
                 EachDay();
                 //player1.myInventory.TerribleMisfortune();
-                if((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0)
+                if((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
                 {
                     break;
                 }

@@ -79,10 +79,10 @@ namespace LemonadeStand
         public double DetermineActualCustomers(Weather weather, Recipe recipe, double potentialCustomers, double price)
         {
             potentialBuyers = new List<Customer>();
+            Random personalityDeterminer = new Random();
             for (int i = 0; i < potentialCustomers; i++)
             {
-                Random personalityDeterminer = new Random();
-                int personality = personalityDeterminer.Next(7);
+                int personality = personalityDeterminer.Next(8);
                 if (personality == 0 || personality == 1)
                 {
                     potentialBuyers.Add(new SourPuss());
@@ -98,6 +98,10 @@ namespace LemonadeStand
                 else if (personality == 6)
                 {
                     potentialBuyers.Add(new YourMom());
+                }
+                else if (personality == 7)
+                {
+                    potentialBuyers.Add(new CheapSkate());
                 }
             }
             double actualCustomers = 0;

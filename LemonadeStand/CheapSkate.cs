@@ -6,7 +6,67 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class CheapSkate
+    class CheapSkate : Customer
     {
+        //member methods (CAN DO)
+
+        //constructor (SPAWNER)
+        public CheapSkate()
+        {
+            Random rand = new Random();
+            customerWallet = rand.Next(4);
+        }
+
+        //member variables
+        public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
+        {
+            bool decision = false;
+            double decisionfactors = 0;
+            if (weather.actualweather == "sunny and dry" && price < 6)
+            {
+                decisionfactors++;
+                decisionfactors++;
+            }
+            if (weather.temperature > 80 && recipe.amountofice > 16)
+            {
+                decisionfactors++;
+            }
+            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountofice > 10 && recipe.amountofice <= 16)
+            {
+                decisionfactors++;
+            }
+            if (weather.temperature < 63 && recipe.amountofice <= 12)
+            {
+                decisionfactors++;
+            }
+            if (price < customerWallet)
+            {
+                decisionfactors++;
+            }
+            if (weather.actualweather == "rainy" || weather.actualweather == "storming")
+            {
+                decisionfactors--;
+                decisionfactors--;
+            }
+            if (price <= 2)
+            {
+                decisionfactors++;
+                decisionfactors++;
+            }
+            if (price > 3)
+            {
+                decisionfactors--;
+            }
+            if (price > customerWallet)
+            {
+                decisionfactors--;
+                decisionfactors--;
+            }
+            if (decisionfactors > 3)
+            {
+                decision = true;
+            }
+            return decision;
+        }
     }
 }
