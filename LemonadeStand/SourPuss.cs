@@ -31,6 +31,10 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
+            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountOfIce > 10 && recipe.amountOfIce <= 16)
+            {
+                decisionFactors++;
+            }
             if (weather.temperature < 63 && recipe.amountOfIce <= 12)
             {
                 decisionFactors++;

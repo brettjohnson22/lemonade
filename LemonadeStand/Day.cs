@@ -11,7 +11,7 @@ namespace LemonadeStand
         //member variables (HAS A)
         public int dayNumber;
         public Weather weather;
-        public List<Customer> potentialBuyers;
+        public List<Customer> potentialCustomers;
 
         //constructor (SPAWNER)
         public Day(int dayNumber)
@@ -20,7 +20,7 @@ namespace LemonadeStand
             weather = new Weather();
         }
         //member methods (CAN DO)
-        public double DeterminePotentialCustomers(Weather weather, double pitchers)
+        public double DetermineNumberOfPotentialCustomers(Weather weather, double pitchers)
         {
             double numberOfPotential = 0;
             double cups = pitchers * Game.cupsPerPitcher;
@@ -76,34 +76,38 @@ namespace LemonadeStand
             }
             return numberOfPotential;
         }
-        public double DetermineActualCustomers(Weather weather, Recipe recipe, double potentialCustomers, double price)
+        public List<Customer> GiveCustomersPersonalities(double numberOfPotential)
         {
-            potentialBuyers = new List<Customer>();
+            potentialCustomers = new List<Customer>();
             Random personalityDeterminer = new Random();
-            for (int i = 0; i < potentialCustomers; i++)
+            for (int i = 0; i < numberOfPotential; i++)
             {
                 int personality = personalityDeterminer.Next(8);
                 if (personality == 0 || personality == 1)
                 {
-                    potentialBuyers.Add(new SourPuss());
+                    potentialCustomers.Add(new SourPuss());
                 }
                 else if (personality == 2 || personality == 3)
                 {
-                    potentialBuyers.Add(new SweetTooth());
+                    potentialCustomers.Add(new SweetTooth());
                 }
                 else if (personality == 4 || personality == 5)
                 {
-                    potentialBuyers.Add(new AverageJoe());
+                    potentialCustomers.Add(new AverageJoe());
                 }
                 else if (personality == 6)
                 {
-                    potentialBuyers.Add(new YourMom());
+                    this.potentialCustomers.Add(new YourMom());
                 }
                 else if (personality == 7)
                 {
-                    potentialBuyers.Add(new CheapSkate());
+                    this.potentialCustomers.Add(new CheapSkate());
                 }
             }
+            return potentialCustomers;
+        }
+        public double DetermineActualCustomers(Weather weather, Recipe recipe, List<Customer> potentialBuyers, double price)
+        {
             double actualCustomers = 0;
             foreach (Customer customer in potentialBuyers)
             {

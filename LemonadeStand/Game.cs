@@ -55,7 +55,8 @@ namespace LemonadeStand
                 MainDisplay();
                 pitchers = MakePitchers(player1.myInventory, price);
             }
-            double potentialCustomers = day.DeterminePotentialCustomers(day.weather, pitchers);
+            double numberOfPotentialCustomers = day.DetermineNumberOfPotentialCustomers(day.weather, pitchers);
+            List<Customer> potentialCustomers = day.GiveCustomersPersonalities(numberOfPotentialCustomers);
             double actualCustomers = day.DetermineActualCustomers(day.weather, player1.myInventory.myRecipe, potentialCustomers, price);
             double sales = TotalSales(price, actualCustomers);
             double dailyexpense = DailyExpense(pitchers);

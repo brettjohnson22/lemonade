@@ -22,8 +22,8 @@ namespace LemonadeStand
             myRecipe = new Recipe();
             myWallet = 10;
             totalProfit = 0;
-            lemons = 100;
-            sugar = 200;
+            lemons = 10;
+            sugar = 20;
             ice = 100;
         }
         //member methods (CAN DO)
