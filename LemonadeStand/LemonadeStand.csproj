@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AverageJoe.cs" />
     <Compile Include="CheapSkate.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="SweetTooth.cs" />
     <Compile Include="UserInterface.cs" />
     <Compile Include="Weather.cs" />
+    <Compile Include="YourMom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

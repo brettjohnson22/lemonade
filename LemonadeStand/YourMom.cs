@@ -6,35 +6,37 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customer
+    class YourMom : Customer
     {
         //member variables (HAS A)
-        public double customerWallet;
 
         //constructor (SPAWNER)
-        public Customer()
+        public YourMom()
         {
-
+            Random rand = new Random();
+            customerWallet = rand.Next(4, 9);
         }
+
         //member methods (CAN DO)
-        public virtual bool DecideToBuy(Weather weather, Recipe recipe, double price)
+        public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
             bool decision = false;
-            double decisionfactors = 0;
-            if(weather.actualweather == "sunny and dry" && price < 8)
+            double decisionfactors = 1;
+            if (weather.actualweather == "sunny and dry" && price < 8)
             {
                 decisionfactors++;
                 decisionfactors++;
             }
-            if(weather.actualweather == "sunny")
+            if (weather.actualweather == "sunny" && price <= 5)
+            {
+                decisionfactors++;
+                decisionfactors++;
+            }
+            if (weather.temperature > 80 && recipe.amountofice > 16)
             {
                 decisionfactors++;
             }
-            if(weather.temperature > 80 && recipe.amountofice > 16)
-            {
-                decisionfactors++;
-            }
-            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountofice > 10 && recipe.amountofice <= 16)
+            if (weather.temperature >= 63 && weather.temperature <= 85 & recipe.amountofice > 10 && recipe.amountofice <= 16)
             {
                 decisionfactors++;
             }
@@ -42,25 +44,29 @@ namespace LemonadeStand
             {
                 decisionfactors++;
             }
-            if (recipe.amountofsugar >= recipe.amountoflemons)
-            {
-                decisionfactors++;
-            }
             if (price <= customerWallet)
             {
                 decisionfactors++;
             }
-            if(price > customerWallet)
+            if (recipe.amountofsugar >= recipe.amountoflemons)
             {
-                decisionfactors--;
+                decisionfactors++;
             }
-            if(weather.actualweather == "storming")
+            if (recipe.amountofsugar > 4)
             {
-                decisionfactors--;
+                decisionfactors++;
             }
             if (price <= 2)
             {
                 decisionfactors++;
+            }
+            if (recipe.amountoflemons > 3)
+            {
+                decisionfactors--;
+            }
+            if (weather.actualweather == "storming")
+            {
+                decisionfactors--;
             }
             if (price > 7)
             {

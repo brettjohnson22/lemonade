@@ -19,10 +19,10 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Weather()
         {
-            //actualweather = "cloudy";
-            //temperature = 66;
-            actualweather = DetermineWeather();
-            temperature = DetermineTemperature(actualweather);
+            actualweather = "sunny and dry";
+            temperature = 67;
+           // actualweather = DetermineWeather();
+            //temperature = DetermineTemperature(actualweather);
             forecast = DetermineForecast(temperature, actualweather);
         }
 

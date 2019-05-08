@@ -20,10 +20,8 @@ namespace LemonadeStand
             weather = new Weather();
         }
         //member methods (CAN DO)
-        public double DetermineCustomers(Weather weather, Recipe recipe, double pitchers, double price)
+        public double DeterminePotentialCustomers(Weather weather, double pitchers)
         {
-            double actualbuyers = 0;
-            potentialBuyers = new List<Customer>();
             double numberOfPotential = 0;
             double cups = pitchers * Game.cupsPerPitcher;
             Random rand = new Random();
@@ -52,7 +50,7 @@ namespace LemonadeStand
                 {
                     numberOfPotential = cups;
                 }
-                
+
             }
             else if (weather.actualweather == "rainy")
             {
@@ -65,7 +63,7 @@ namespace LemonadeStand
                     numberOfPotential = cups;
                 }
             }
-            else if(weather.actualweather == "storming")
+            else if (weather.actualweather == "storming")
             {
                 if (cups >= 10)
                 {
@@ -76,31 +74,41 @@ namespace LemonadeStand
                     numberOfPotential = cups;
                 }
             }
-            for(int i = 0; i < numberOfPotential; i++)
+            return numberOfPotential;
+        }
+        public double DetermineActualCustomers(Weather weather, Recipe recipe, double potentialCustomers, double price)
+        {
+            potentialBuyers = new List<Customer>();
+            for (int i = 0; i < potentialCustomers; i++)
             {
                 Random personalityDeterminer = new Random();
-                int personality = personalityDeterminer.Next(6);
-                if(personality == 0 || personality == 1)
+                int personality = personalityDeterminer.Next(7);
+                if (personality == 0 || personality == 1)
                 {
                     potentialBuyers.Add(new SourPuss());
                 }
-                else if(personality == 2 || personality == 3)
+                else if (personality == 2 || personality == 3)
                 {
                     potentialBuyers.Add(new SweetTooth());
                 }
-                else
+                else if (personality == 4 || personality == 5)
                 {
-                    potentialBuyers.Add(new Customer());
+                    potentialBuyers.Add(new AverageJoe());
+                }
+                else if (personality == 6)
+                {
+                    potentialBuyers.Add(new YourMom());
                 }
             }
-            foreach(Customer customer in potentialBuyers)
+            double actualCustomers = 0;
+            foreach (Customer customer in potentialBuyers)
             {
                 if (customer.DecideToBuy(weather, recipe, price))
                 {
-                    actualbuyers++;
+                    actualCustomers++;
                 }
             }
-            return actualbuyers;
+            return actualCustomers;
         }
 
     }

@@ -57,13 +57,14 @@ namespace LemonadeStand
                 MainDisplay();
                 pitchers = MakePitchers(player1.myInventory, price);
             }
-            double customers = day.DetermineCustomers(day.weather, player1.myInventory.myRecipe, pitchers, price);
-            double sales = TotalSales(price, customers);
+            double potentialCustomers = day.DeterminePotentialCustomers(day.weather, pitchers);
+            double actualCustomers = day.DetermineActualCustomers(day.weather, player1.myInventory.myRecipe, potentialCustomers, price);
+            double sales = TotalSales(price, actualCustomers);
             double dailyexpense = DailyExpense(pitchers);
             double dailyprofit = DailyProfits(sales, dailyexpense);
             UpdateWallet(player1.myInventory, sales);
             UpdateTotalProfits(player1.myInventory, dailyprofit);
-            UserInterface.EndOfDay(day, customers, price, sales, player1.myInventory);
+            UserInterface.EndOfDay(day, actualCustomers, price, sales, player1.myInventory);
             Console.ReadLine();
         }
         public double GetPrice()
@@ -248,10 +249,14 @@ namespace LemonadeStand
         }
         public void RunWeek()
         {
-            while (daycounter < 7 && player1.myInventory.myWallet >= 0)
+            while (daycounter < 7)
             {
                 EachDay();
-                player1.myInventory.TerribleMisfortune();
+                //player1.myInventory.TerribleMisfortune();
+                if((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0)
+                {
+                    break;
+                }
             }
             GameOver();
         }

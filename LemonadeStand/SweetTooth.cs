@@ -13,14 +13,13 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public SweetTooth()
         {
-
+            Random rand = new Random();
+            customerWallet = rand.Next(3, 7);
         }
 
         //member methods (CAN DO)
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
-            Random rand = new Random();
-            customerWallet = rand.Next(3, 9);
             bool decision = false;
             double decisionfactors = 0;
             if (weather.actualweather == "sunny and dry" && price < 8)
@@ -59,6 +58,7 @@ namespace LemonadeStand
             }
             if (price <= 2)
             {
+                decisionfactors++;
                 decisionfactors++;
             }
             if (recipe.amountoflemons > 3)

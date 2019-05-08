@@ -13,14 +13,13 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public SourPuss()
         {
-
+            Random rand = new Random();
+            customerWallet = rand.Next(5);
         }
 
         //member methods (CAN DO)
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
-            Random rand = new Random();
-            customerWallet = rand.Next(1, 6);
             bool decision = false;
             double decisionfactors = 0;
             if (weather.actualweather == "sunny and dry" && price < 6)
@@ -48,6 +47,10 @@ namespace LemonadeStand
             {
                 decisionfactors--;
                 decisionfactors--;
+            }
+            if (price <= 2)
+            {
+                decisionfactors++;
             }
             if (price > 3)
             {
