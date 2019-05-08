@@ -9,12 +9,12 @@ namespace LemonadeStand
     class Game
     {
         //member variables (HAS A)
-        public UserInterface UI;
+        
         public Player player1;
         public Day day;
         public Store store;
         public int daycounter;
-        public double cupsPerPitcher;
+        public static double cupsPerPitcher;
 
         //constructor (SPAWNER)
         public Game()
@@ -24,16 +24,16 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public void Welcome()
         {
-            UI = new UserInterface();
+            
             player1 = new Player();
             store = new Store();
             daycounter = 0;
             cupsPerPitcher = 8;
-            UI.IntroText();
+            UserInterface.IntroText();
         }
         public void MainDisplay()
         {
-            UI.DailyText(day, player1.myInventory);
+            UserInterface.DailyText(day, player1.myInventory);
             DisplayCost();
         }
         public void DisplayCost()
@@ -57,13 +57,13 @@ namespace LemonadeStand
                 MainDisplay();
                 pitchers = MakePitchers(player1.myInventory, price);
             }
-            double customers = DetermineCustomers(pitchers);
+            double customers = DetermineCustomers(day.weather, pitchers);
             double sales = TotalSales(price, customers);
             double dailyexpense = DailyExpense(pitchers);
             double dailyprofit = DailyProfits(sales, dailyexpense);
             UpdateWallet(player1.myInventory, sales);
             UpdateTotalProfits(player1.myInventory, dailyprofit);
-            UI.EndOfDay(day, customers, price, sales, player1.myInventory);
+            UserInterface.EndOfDay(day, customers, price, sales, player1.myInventory);
             Console.ReadLine();
         }
         public double GetPrice()
@@ -77,8 +77,7 @@ namespace LemonadeStand
             }
             catch(FormatException)
             {
-                Console.WriteLine("You must enter a number. Try again.");
-                Console.ReadLine();
+                UserInterface.EnterANumber();
             }
             return price;
         }
@@ -93,8 +92,7 @@ namespace LemonadeStand
             }
             catch (FormatException)
             {
-                Console.WriteLine("You must enter a number. Try again.");
-                Console.ReadLine();
+                UserInterface.EnterANumber();
             }
             if (pitchers * inv.myRecipe.amountoflemons <= inv.lemons && pitchers * inv.myRecipe.amountofsugar <= inv.sugar && pitchers * inv.myRecipe.amountofice <= inv.ice)
             {
@@ -119,7 +117,7 @@ namespace LemonadeStand
                 return pitchers;
             }
         }
-        public double DetermineCustomers(double pitchers)
+        public double DetermineCustomers(Weather weather, double pitchers)
         {
             double cups = pitchers * cupsPerPitcher;
             //Will eventually be the full algorhythm to determine number of sales
@@ -137,7 +135,7 @@ namespace LemonadeStand
             while (!valid)
             {
                 MainDisplay();
-                UI.OptionPrompt();
+                UserInterface.OptionPrompt();
                 string input = Console.ReadLine();
                 switch (input.ToLower())
                 {
@@ -163,7 +161,7 @@ namespace LemonadeStand
             bool valid = false;
             while (!valid)
             {
-                UI.StorePrices(store);
+                UserInterface.StorePrices(store);
                 string input = Console.ReadLine();
                 switch (input.ToLower())
                 {
@@ -200,7 +198,7 @@ namespace LemonadeStand
             {
                 MainDisplay();
                 Console.WriteLine("\nWhich do you want to change?\n");
-                UI.IngredientPrompt();
+                UserInterface.IngredientPrompt();
                 string input = Console.ReadLine();
                 switch (input.ToLower())
                 {

@@ -41,19 +41,16 @@ namespace LemonadeStand
                     break;
                 case 5:
                 case 6:
-                    Console.WriteLine("You forgot to put your ice in the freezer, and it all melted. You'll have to buy more tomorrow.");
                     ice = 0;
-                    Console.ReadLine();
+                    UserInterface.IceMelt();
                     break;
                 case 7:
-                    Console.WriteLine("As you were packing up your lemonade stand for the night, a horde of zombies shambles down your street towards you. You pelt them with lemons until they get the message and stumble off in the opposite direction. You're safe for now, but unfortunately you'll have to buy more lemons tomorrow.");
                     lemons = 0;
-                    Console.ReadLine();
+                    UserInterface.LemonToss();
                     break;
                 case 8:
-                    Console.WriteLine("A super fancy food truck that makes delicious-looking blended beverages parks right next to you, threatening to steal all your business. While the driver is distracted, you pour all your sugar in the truck's generator. The blender sputters and whirrs before stopping all together, smoke rising from the truck. The driver glares at you before driving off for repairs. Your business is safe for now, but you'll have to buy more sugar tomorrow.");
                     sugar = 0;
-                    Console.ReadLine();
+                    UserInterface.SugarTank();
                     break;
                 case 9:
                     if (myWallet > 15)
