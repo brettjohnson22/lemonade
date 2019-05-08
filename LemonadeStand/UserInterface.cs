@@ -24,11 +24,11 @@ namespace LemonadeStand
         public static void DailyText(Day day, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountoflemons} lemons, {inv.myRecipe.amountofsugar} sugar, and {inv.myRecipe.amountofice} ice.\n");
+            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountOfLemons} lemons, {inv.myRecipe.amountOfSugar} sugar, and {inv.myRecipe.amountOfIce} ice.\n");
         }
         public static void StorePrices()
         {
-            Console.WriteLine($"\nYou are at the store.\n\n{Store.Lemonsale} lemons for ${Store.Lemoncost}\n{Store.Sugarsale} sugar for ${Store.Sugarcost}\n{Store.Icesale} ice for ${Store.Icecost}\n\nWhat do you want to buy?");
+            Console.WriteLine($"\nYou are at the store.\n\n{Store.LemonSale} lemons for ${Store.LemonCost}\n{Store.SugarSale} sugar for ${Store.SugarCost}\n{Store.IceSale} ice for ${Store.IceCost}\n\nWhat do you want to buy?");
             IngredientPrompt();
         }
         public static void IngredientPrompt()
@@ -42,7 +42,7 @@ namespace LemonadeStand
         public static void EndOfDay(Day day, double customers, double price, double sales, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualweather}.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales}. You now have $" + inv.myWallet + "." );
+            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales}. You now have $" + inv.myWallet + "." );
         }
         public static void EnterANumber()
         {

@@ -21,47 +21,47 @@ namespace LemonadeStand
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
             bool decision = false;
-            double decisionfactors = 0;
-            if (weather.actualweather == "sunny and dry" && price < 6)
+            double decisionFactors = 0;
+            if (weather.actualWeather == "sunny and dry" && price < 6)
             {
-                decisionfactors++;
-                decisionfactors++;
+                decisionFactors++;
+                decisionFactors++;
             }
-            if (weather.temperature > 80 && recipe.amountofice > 16)
+            if (weather.temperature > 80 && recipe.amountOfIce > 16)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
-            if (weather.temperature < 63 && recipe.amountofice <= 12)
+            if (weather.temperature < 63 && recipe.amountOfIce <= 12)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
             if (price < customerWallet)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
-            if (recipe.amountoflemons > 3)
+            if (recipe.amountOfLemons > 3)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
-            if (weather.actualweather == "rainy" || weather.actualweather == "storming")
+            if (weather.actualWeather == "rainy" || weather.actualWeather == "storming")
             {
-                decisionfactors--;
-                decisionfactors--;
+                decisionFactors--;
+                decisionFactors--;
             }
             if (price <= 2)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
             if (price > 3)
             {
-                decisionfactors--;
+                decisionFactors--;
             }
             if (price > customerWallet)
             {
-                decisionfactors--;
-                decisionfactors--;
+                decisionFactors--;
+                decisionFactors--;
             }
-            if (decisionfactors > 3)
+            if (decisionFactors > 3)
             {
                 decision = true;
             }

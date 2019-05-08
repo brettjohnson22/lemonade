@@ -20,58 +20,58 @@ namespace LemonadeStand
         public virtual bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
             bool decision = false;
-            double decisionfactors = 0;
-            if(weather.actualweather == "sunny and dry" && price < 8)
+            double decisionFactors = 0;
+            if(weather.actualWeather == "sunny and dry" && price < 8)
             {
-                decisionfactors++;
-                decisionfactors++;
+                decisionFactors++;
+                decisionFactors++;
             }
-            if(weather.actualweather == "sunny")
+            if(weather.actualWeather == "sunny")
             {
-                decisionfactors++;
+                decisionFactors++;
             }
-            if(weather.temperature > 80 && recipe.amountofice > 16)
+            if(weather.temperature > 80 && recipe.amountOfIce > 16)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
-            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountofice > 10 && recipe.amountofice <= 16)
+            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountOfIce > 10 && recipe.amountOfIce <= 16)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
-            if (weather.temperature < 63 && recipe.amountofice <= 12)
+            if (weather.temperature < 63 && recipe.amountOfIce <= 12)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
-            if (recipe.amountofsugar >= recipe.amountoflemons)
+            if (recipe.amountOfSugar >= recipe.amountOfLemons)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
             if (price <= customerWallet)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
             if(price > customerWallet)
             {
-                decisionfactors--;
+                decisionFactors--;
             }
-            if(weather.actualweather == "storming")
+            if(weather.actualWeather == "storming")
             {
-                decisionfactors--;
+                decisionFactors--;
             }
             if (price <= 2)
             {
-                decisionfactors++;
+                decisionFactors++;
             }
             if (price > 7)
             {
-                decisionfactors--;
+                decisionFactors--;
             }
             if (price > 9)
             {
-                decisionfactors--;
-                decisionfactors--;
+                decisionFactors--;
+                decisionFactors--;
             }
-            if (decisionfactors >= 2)
+            if (decisionFactors >= 2)
             {
                 decision = true;
             }

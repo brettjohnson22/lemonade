@@ -9,38 +9,38 @@ namespace LemonadeStand
     public static class Store
     {
         //member variables (HAS A)
-        private static double lemoncost;
-        private static double lemonsale;
-        private static double sugarcost;
-        private static double sugarsale;
-        private static double icesale;
-        private static double icecost;
-        public static double Lemoncost { get { return lemoncost; } }
-        public static double Lemonsale { get { return lemonsale; } }
-        public static double Sugarcost { get { return sugarcost; } }
-        public static double Sugarsale { get { return sugarsale; } }
-        public static double Icesale { get { return icesale; } }
-        public static double Icecost { get { return icecost; } }
+        private static double lemonCost;
+        private static double lemonSale;
+        private static double sugarCost;
+        private static double sugarSale;
+        private static double iceSale;
+        private static double iceCost;
+        public static double LemonCost { get { return lemonCost; } }
+        public static double LemonSale { get { return lemonSale; } }
+        public static double SugarCost { get { return sugarCost; } }
+        public static double SugarSale { get { return sugarSale; } }
+        public static double IceSale { get { return iceSale; } }
+        public static double IceCost { get { return iceCost; } }
 
         //constructor (SPAWNER)
         static Store()
         {
-            lemoncost = 4;
-            lemonsale = 8;
-            sugarcost = 3;
-            sugarsale = 5;
-            icecost = 3;
-            icesale = 100;
+            lemonCost = 4;
+            lemonSale = 8;
+            sugarCost = 3;
+            sugarSale = 5;
+            iceCost = 3;
+            iceSale = 100;
         }
         //member methods (CAN DO)
         public static void SellLemons(Inventory inv)
         {
             double lem = inv.lemons;
             double wallet = inv.myWallet;
-            if (wallet >= lemoncost)
+            if (wallet >= lemonCost)
             {
-                inv.lemons = lem + lemonsale;
-                inv.myWallet = wallet - lemoncost;
+                inv.lemons = lem + lemonSale;
+                inv.myWallet = wallet - lemonCost;
             }
             else
             {
@@ -51,10 +51,10 @@ namespace LemonadeStand
         {
             double sug = inv.sugar;
             double wallet = inv.myWallet;
-            if (wallet >= sugarcost)
+            if (wallet >= sugarCost)
             {
-                inv.sugar = sug + sugarsale;
-                inv.myWallet = wallet - sugarcost;
+                inv.sugar = sug + sugarSale;
+                inv.myWallet = wallet - sugarCost;
             }
             else
             {
@@ -65,10 +65,10 @@ namespace LemonadeStand
         {
             double ice = inv.ice;
             double wallet = inv.myWallet;
-            if (wallet >= icecost)
+            if (wallet >= iceCost)
             {
-                inv.ice = ice + icesale;
-                inv.myWallet = wallet - icecost;
+                inv.ice = ice + iceSale;
+                inv.myWallet = wallet - iceCost;
             }
             else
             {

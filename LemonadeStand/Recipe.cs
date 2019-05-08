@@ -9,16 +9,16 @@ namespace LemonadeStand
     public class Recipe
     {
         //member variables (HAS A)
-        public double amountoflemons;
-        public double amountofsugar;
-        public double amountofice;
+        public double amountOfLemons;
+        public double amountOfSugar;
+        public double amountOfIce;
 
         //constructor (SPAWNER)
         public Recipe()
         {
-            amountoflemons = 3;
-            amountofsugar = 4;
-            amountofice = 16;
+            amountOfLemons = 3;
+            amountOfSugar = 4;
+            amountOfIce = 16;
         }
 
         //member methods (CAN DO)
@@ -28,18 +28,18 @@ namespace LemonadeStand
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.WriteLine($"You will be using {amountoflemons} lemons per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
+                Console.WriteLine($"You will be using {amountOfLemons} lemons per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
                     case ConsoleKey.UpArrow:
-                        amountoflemons++;
+                        amountOfLemons++;
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
-                        if(amountoflemons > 1)
+                        if(amountOfLemons > 1)
                         {
-                            amountoflemons--;
+                            amountOfLemons--;
                             ClearOldLine();
                         }
                         else
@@ -63,18 +63,18 @@ namespace LemonadeStand
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.WriteLine($"You will be using {amountofsugar} sugar per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
+                Console.WriteLine($"You will be using {amountOfSugar} sugar per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
                     case ConsoleKey.UpArrow:
-                        amountofsugar++;
+                        amountOfSugar++;
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
-                        if (amountofsugar > 1)
+                        if (amountOfSugar > 1)
                         {
-                            amountofsugar--;
+                            amountOfSugar--;
                             ClearOldLine();
                         }
                         else
@@ -97,18 +97,18 @@ namespace LemonadeStand
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.WriteLine($"You will be using {amountofice} ice per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
+                Console.WriteLine($"You will be using {amountOfIce} ice per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
                     case ConsoleKey.UpArrow:
-                        amountofice++;
+                        amountOfIce++;
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
-                        if (amountofice > 1)
+                        if (amountOfIce > 1)
                         {
-                            amountofice--;
+                            amountOfIce--;
                             ClearOldLine();
                         }
                         else

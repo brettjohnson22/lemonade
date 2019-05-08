@@ -11,7 +11,7 @@ namespace LemonadeStand
         //member variables (HAS A)
         public string forecast;
         public List<string> conditions;
-        public string actualweather;
+        public string actualWeather;
         public double temperature;
         //public double temperature;
 
@@ -19,9 +19,9 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Weather()
         {
-            actualweather = DetermineWeather();
-            temperature = DetermineTemperature(actualweather);
-            forecast = DetermineForecast(temperature, actualweather);
+            actualWeather = DetermineWeather();
+            temperature = DetermineTemperature(actualWeather);
+            forecast = DetermineForecast(temperature, actualWeather);
         }
 
         //member methods (CAN DO)

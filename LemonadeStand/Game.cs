@@ -12,7 +12,7 @@ namespace LemonadeStand
         
         public Player player1;
         public Day day;
-        public int daycounter;
+        public int dayCounter;
         public static double cupsPerPitcher;
 
         //constructor (SPAWNER)
@@ -25,7 +25,7 @@ namespace LemonadeStand
         {
             
             player1 = new Player();
-            daycounter = 0;
+            dayCounter = 0;
             cupsPerPitcher = 8;
             UserInterface.IntroText();
         }
@@ -41,8 +41,8 @@ namespace LemonadeStand
         }
         public void EachDay()
         {
-            daycounter++;
-            day = new Day(daycounter);
+            dayCounter++;
+            day = new Day(dayCounter);
             double pitchers = 0;
             double price = 0;
             while (price == 0)
@@ -93,11 +93,11 @@ namespace LemonadeStand
             {
                 UserInterface.EnterANumber();
             }
-            if (pitchers * inv.myRecipe.amountoflemons <= inv.lemons && pitchers * inv.myRecipe.amountofsugar <= inv.sugar && pitchers * inv.myRecipe.amountofice <= inv.ice)
+            if (pitchers * inv.myRecipe.amountOfLemons <= inv.lemons && pitchers * inv.myRecipe.amountOfSugar <= inv.sugar && pitchers * inv.myRecipe.amountOfIce <= inv.ice)
             {
-                inv.lemons -= (pitchers * inv.myRecipe.amountoflemons);
-                inv.sugar -= (pitchers * inv.myRecipe.amountofsugar);
-                inv.ice -= (pitchers * inv.myRecipe.amountofice);
+                inv.lemons -= (pitchers * inv.myRecipe.amountOfLemons);
+                inv.sugar -= (pitchers * inv.myRecipe.amountOfSugar);
+                inv.ice -= (pitchers * inv.myRecipe.amountOfIce);
                 return pitchers;
             }
             else 
@@ -222,7 +222,7 @@ namespace LemonadeStand
         }
         public double CalculateCost()
         {
-            double costofpitcher = (player1.myInventory.myRecipe.amountoflemons * (Store.Lemoncost / Store.Lemonsale) + player1.myInventory.myRecipe.amountofsugar * (Store.Sugarcost / Store.Sugarsale) + player1.myInventory.myRecipe.amountofice * (Store.Icecost / Store.Icesale));
+            double costofpitcher = (player1.myInventory.myRecipe.amountOfLemons * (Store.LemonCost / Store.LemonSale) + player1.myInventory.myRecipe.amountOfSugar * (Store.SugarCost / Store.SugarSale) + player1.myInventory.myRecipe.amountOfIce * (Store.IceCost / Store.IceSale));
             double costofcup = Math.Round(costofpitcher / cupsPerPitcher, 2);
             return costofcup;
         }
@@ -247,7 +247,7 @@ namespace LemonadeStand
         }
         public void RunWeek()
         {
-            while (daycounter < 7)
+            while (dayCounter < 7)
             {
                 EachDay();
                 //player1.myInventory.TerribleMisfortune();
@@ -260,7 +260,7 @@ namespace LemonadeStand
         }
         public void GameOver()
         {
-            if (daycounter == 7)
+            if (dayCounter == 7)
             {
                 Console.WriteLine($"Week has ended! Your total wallet amount is ${player1.myInventory.myWallet}. Your net profit for the week is ${player1.myInventory.totalProfit}");
                 Console.ReadLine();

@@ -25,11 +25,11 @@ namespace LemonadeStand
             double numberOfPotential = 0;
             double cups = pitchers * Game.cupsPerPitcher;
             Random rand = new Random();
-            if (weather.actualweather == "sunny and dry")
+            if (weather.actualWeather == "sunny and dry")
             {
                 numberOfPotential = cups;
             }
-            else if (weather.actualweather == "sunny")
+            else if (weather.actualWeather == "sunny")
             {
                 if (cups >= 30)
                 {
@@ -40,7 +40,7 @@ namespace LemonadeStand
                     numberOfPotential = cups;
                 }
             }
-            else if (weather.actualweather == "cloudy")
+            else if (weather.actualWeather == "cloudy")
             {
                 if (cups >= 20)
                 {
@@ -52,7 +52,7 @@ namespace LemonadeStand
                 }
 
             }
-            else if (weather.actualweather == "rainy")
+            else if (weather.actualWeather == "rainy")
             {
                 if (cups >= 15)
                 {
@@ -63,7 +63,7 @@ namespace LemonadeStand
                     numberOfPotential = cups;
                 }
             }
-            else if (weather.actualweather == "storming")
+            else if (weather.actualWeather == "storming")
             {
                 if (cups >= 10)
                 {
