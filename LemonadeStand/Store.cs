@@ -9,12 +9,12 @@ namespace LemonadeStand
     public static class Store
     {
         //member variables (HAS A)
-        private static double lemonCost;
-        private static double lemonSale;
-        private static double sugarCost;
-        private static double sugarSale;
-        private static double iceSale;
-        private static double iceCost;
+        private static readonly double lemonCost;
+        private static readonly double lemonSale;
+        private static readonly double sugarCost;
+        private static readonly double sugarSale;
+        private static readonly double iceSale;
+        private static readonly double iceCost;
         public static double LemonCost { get { return lemonCost; } }
         public static double LemonSale { get { return lemonSale; } }
         public static double SugarCost { get { return sugarCost; } }

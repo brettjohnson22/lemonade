@@ -20,60 +20,15 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
-            bool decision = false;
-            double decisionFactors = 0;
-            if (weather.actualWeather == "sunny and dry" && price < 6)
+            double tasteFactor = LikeTheTaste(weather, recipe);
+            double weatherFactor = LikeTheWeather(weather);
+            double priceFactor = LikeThePrice(price);
+            bool decideToBuy = false;
+            if (tasteFactor + weatherFactor + priceFactor > 3)
             {
-                decisionFactors++;
-                decisionFactors++;
+                decideToBuy = true;
             }
-            if (weather.temperature > 80 && recipe.amountOfIce > 16)
-            {
-                decisionFactors++;
-            }
-            if (weather.temperature < 63 && recipe.amountOfIce <= 12)
-            {
-                decisionFactors++;
-            }
-            if (price < customerWallet)
-            {
-                decisionFactors++;
-            }
-            if (recipe.amountOfLemons > 3)
-            {
-                decisionFactors++;
-            }
-            if (weather.actualWeather == "cloudy")
-            {
-                decisionFactors--;
-            }
-            if (weather.actualWeather == "rainy" || weather.actualWeather == "storming")
-            {
-                decisionFactors--;
-                decisionFactors--;
-            }
-            if (price <= 2)
-            {
-                decisionFactors++;
-            }
-            if (price > 4)
-            {
-                decisionFactors--;
-            }
-            if (price >= 5)
-            {
-                decisionFactors--;
-            }
-            if (price > customerWallet)
-            {
-                decisionFactors--;
-                decisionFactors--;
-            }
-            if (decisionFactors > 2)
-            {
-                decision = true;
-            }
-            return decision;
+            return decideToBuy;
         }
     }
 }

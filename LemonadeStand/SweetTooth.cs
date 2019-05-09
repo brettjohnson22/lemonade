@@ -16,27 +16,27 @@ namespace LemonadeStand
             Random rand = new Random();
             customerWallet = rand.Next(3, 7);
         }
-
         //member methods (CAN DO)
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
-            bool decision = false;
+            double tasteFactor = LikeTheTaste(weather, recipe);
+            double weatherFactor = LikeTheWeather(weather);
+            double priceFactor = LikeThePrice(price);
+            bool decideToBuy = false;
+            if (tasteFactor + weatherFactor + priceFactor >= 2)
+            {
+                decideToBuy = true;
+            }
+            return decideToBuy;
+        }
+        public override double LikeTheTaste(Weather weather, Recipe recipe)
+        {
             double decisionFactors = 0;
-            if (weather.actualWeather == "sunny and dry" && price < 8)
-            {
-                decisionFactors++;
-                decisionFactors++;
-            }
-            if (weather.actualWeather == "sunny" && price <=5)
-            {
-                decisionFactors++;
-                decisionFactors++;
-            }
             if (weather.temperature > 80 && recipe.amountOfIce > 16)
             {
                 decisionFactors++;
             }
-            if (weather.temperature >= 63 && weather.temperature <= 85 & recipe.amountOfIce > 10 && recipe.amountOfIce <= 16)
+            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountOfIce > 10 && recipe.amountOfIce <= 16)
             {
                 decisionFactors++;
             }
@@ -44,50 +44,36 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
-            if (price <= customerWallet)
-            {
-                decisionFactors++;
-            }
             if (recipe.amountOfSugar >= recipe.amountOfLemons)
             {
                 decisionFactors++;
             }
-            if (recipe.amountOfSugar > 4)
+            if (recipe.amountOfSugar > 3)
             {
                 decisionFactors++;
             }
-            if (price <= 2)
-            {
-                decisionFactors++;
-                decisionFactors++;
-            }
-            if (recipe.amountOfLemons > 3)
+            if (recipe.amountOfLemons > recipe.amountOfSugar)
             {
                 decisionFactors--;
             }
-            if (weather.actualWeather == "rainy")
-            {
-                decisionFactors--;
-            }
-            if (weather.actualWeather == "storming")
+            if (recipe.amountOfIce < 5 || recipe.amountOfIce > 20)
             {
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (price > 7)
-            {
-                decisionFactors--;
-            }
-            if (price > 9)
+            if (recipe.amountOfSugar < 2 || recipe.amountOfSugar > 15)
             {
                 decisionFactors--;
                 decisionFactors--;
+                decisionFactors--;
             }
-            if (decisionFactors >= 2)
+            if (recipe.amountOfLemons < 2 || recipe.amountOfLemons > 8)
             {
-                decision = true;
+                decisionFactors--;
+                decisionFactors--;
+                decisionFactors--;
             }
-            return decision;
+            return decisionFactors;
         }
     }
 }

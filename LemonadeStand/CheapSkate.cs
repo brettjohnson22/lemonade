@@ -9,7 +9,7 @@ namespace LemonadeStand
     class CheapSkate : Customer
     {
         //member methods (CAN DO)
-
+        
         //constructor (SPAWNER)
         public CheapSkate()
         {
@@ -20,65 +20,37 @@ namespace LemonadeStand
         //member variables
         public override bool DecideToBuy(Weather weather, Recipe recipe, double price)
         {
-            bool decision = false;
+            double tasteFactor = LikeTheTaste(weather, recipe);
+            double weatherFactor = LikeTheWeather(weather);
+            double priceFactor = LikeThePrice(price);
+            bool decideToBuy = false;
+            if (tasteFactor + weatherFactor + priceFactor > 3)
+            {
+                decideToBuy = true;
+            }
+            return decideToBuy;
+        }
+        public override double LikeThePrice(double price)
+        {
             double decisionFactors = 0;
-            if (weather.actualWeather == "sunny and dry" && price < 6)
-            {
-                decisionFactors++;
-                decisionFactors++;
-            }
-            //if (weather.actualWeather == "sunny")
-            //{
-            //    decisionFactors++;
-            //}
-            if (weather.temperature > 80 && recipe.amountOfIce > 16)
-            {
-                decisionFactors++;
-            }
-            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountOfIce > 10 && recipe.amountOfIce <= 16)
-            {
-                decisionFactors++;
-            }
-            if (weather.temperature < 63 && recipe.amountOfIce <= 12)
-            {
-                decisionFactors++;
-            }
-            if (price < customerWallet)
-            {
-                decisionFactors++;
-            }
-            if (weather.actualWeather == "cloudy")
-            {
-                decisionFactors--;
-            }
-            if (weather.actualWeather == "rainy" || weather.actualWeather == "storming")
-            {
-                decisionFactors--;
-                decisionFactors--;
-            }
             if (price <= 2)
             {
                 decisionFactors++;
+            }
+            if (price <= customerWallet)
+            {
                 decisionFactors++;
             }
-            if (price > 3)
+            if (price >= 3)
             {
                 decisionFactors--;
             }
             if (price >= 5)
             {
                 decisionFactors--;
-            }
-            if (price > customerWallet)
-            {
-                decisionFactors--;
                 decisionFactors--;
             }
-            if (decisionFactors > 2)
-            {
-                decision = true;
-            }
-            return decision;
+            return decisionFactors;
         }
     }
 }
