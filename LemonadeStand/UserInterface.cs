@@ -23,10 +23,18 @@ namespace LemonadeStand
             Console.Clear();
             Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountOfLemons} lemons, {inv.myRecipe.amountOfSugar} sugar, and {inv.myRecipe.amountOfIce} ice.\n");
         }
+        public static void CostDisplay(double costOfCup)
+        {
+            Console.WriteLine($"Each cup costs you ${costOfCup}.");
+        }
         public static void StorePrices()
         {
             Console.WriteLine($"\nYou are at the store.\n\n{Store.LemonSale} lemons for ${Store.LemonCost}\n{Store.SugarSale} sugar for ${Store.SugarCost}\n{Store.IceSale} ice for ${Store.IceCost}\n\nWhat do you want to buy?");
             IngredientPrompt();
+        }
+        public static void CantAfford()
+        {
+            Console.WriteLine($"\nYou can't afford this. Make more money!");
         }
         public static void IngredientPrompt()
         {
@@ -40,11 +48,6 @@ namespace LemonadeStand
         {
             Console.Clear();
             Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales} for a profit of ${profit}. You now have $" + inv.myWallet + "." );
-        }
-        public static void EnterANumber()
-        {
-            Console.WriteLine("You must enter a number. Try again.");
-            Console.ReadLine();
         }
         public static void IceMelt()
         {
@@ -71,6 +74,11 @@ namespace LemonadeStand
             Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}");
             Console.ReadLine();
         }
+        public static void Bankrupt()
+        {
+            Console.WriteLine("You dont have enough money to make any more lemonade! Next time be more careful!");
+            Console.ReadLine();
+        }
         public static void NeedSupplies()
         {
             Console.WriteLine("You don't have enough supplies. Buy more? 'Y' for yes, 'N' for no.");
@@ -83,17 +91,18 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nWhat will you set today's price at? (In dollars)");
         }
-        public static void CostDisplay(double costOfCup)
+        public static void EnterANumber()
         {
-            Console.WriteLine($"Each cup costs you ${costOfCup}.");
+            Console.WriteLine("You must enter a number. Try again.");
+            Console.ReadLine();
         }
         public static void ChangePrompt()
         {
             Console.WriteLine("\nWhich do you want to change?\n");
         }
-        public static void CantAfford()
+        public static void UseInPitcher(double amount, string ingredient)
         {
-            Console.WriteLine($"\nYou can't afford this. Make more money!");
+            Console.WriteLine($"You will be using {amount} {ingredient} per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
         }
     }
 }

@@ -20,32 +20,30 @@ namespace LemonadeStand
             amountOfSugar = 4;
             amountOfIce = 16;
         }
-
         //member methods (CAN DO)
-        public void AdjustLemons()
+        public void AdjustLemons(double lemonsInInventory)
         {
             Console.WriteLine("");
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.WriteLine($"You will be using {amountOfLemons} lemons per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
+                UserInterface.UseInPitcher(amountOfLemons, "lemons");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
                     case ConsoleKey.UpArrow:
-                        amountOfLemons++;
+                        if (amountOfLemons < lemonsInInventory)
+                        {
+                            amountOfLemons++;
+                        }
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         if(amountOfLemons > 1)
                         {
                             amountOfLemons--;
-                            ClearOldLine();
                         }
-                        else
-                        {
-                            ClearOldLine();
-                        }
+                        ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
@@ -55,32 +53,30 @@ namespace LemonadeStand
                         break;
                 }
             }
-
         }
-        public void AdjustSugar()
+        public void AdjustSugar(double sugarInInventory)
         {
             Console.WriteLine("");
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.WriteLine($"You will be using {amountOfSugar} sugar per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
+                UserInterface.UseInPitcher(amountOfSugar, "sugar");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
                     case ConsoleKey.UpArrow:
-                        amountOfSugar++;
+                        if (amountOfSugar < sugarInInventory)
+                        {
+                            amountOfSugar++;
+                        }
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         if (amountOfSugar > 1)
                         {
                             amountOfSugar--;
-                            ClearOldLine();
                         }
-                        else
-                        {
-                            ClearOldLine();
-                        }
+                        ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
@@ -91,30 +87,29 @@ namespace LemonadeStand
                 }
             }
         }
-        public void AdjustIce()
+        public void AdjustIce(double iceInInventory)
         {
             Console.WriteLine("");
             bool keepGoing = true;
             while (keepGoing == true)
             {
-                Console.WriteLine($"You will be using {amountOfIce} ice per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
+                UserInterface.UseInPitcher(amountOfIce, "ice");
                 ConsoleKey keyinput = Console.ReadKey().Key;
                 switch (keyinput)
                 {
                     case ConsoleKey.UpArrow:
-                        amountOfIce++;
+                        if (amountOfIce < iceInInventory)
+                        {
+                            amountOfIce++;
+                        }
                         ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         if (amountOfIce > 1)
                         {
                             amountOfIce--;
-                            ClearOldLine();
                         }
-                        else
-                        {
-                            ClearOldLine();
-                        }
+                        ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;

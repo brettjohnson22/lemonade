@@ -13,9 +13,7 @@ namespace LemonadeStand
         public List<string> conditions;
         public string actualWeather;
         public double temperature;
-        //public double temperature;
-
-
+     
         //constructor (SPAWNER)
         public Weather()
         {

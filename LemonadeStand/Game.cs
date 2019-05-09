@@ -200,19 +200,19 @@ namespace LemonadeStand
                         goto case "l";
                     case "l":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustLemons();
+                        player1.myInventory.myRecipe.AdjustLemons(player1.myInventory.lemons);
                         break;
                     case "sugar":
                         goto case "s";
                     case "s":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustSugar();
+                        player1.myInventory.myRecipe.AdjustSugar(player1.myInventory.sugar);
                         break;
                     case "ice":
                         goto case "i";
                     case "i":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustIce();
+                        player1.myInventory.myRecipe.AdjustIce(player1.myInventory.ice);
                         break;
                     case "p":
                         valid = true;
@@ -267,6 +267,10 @@ namespace LemonadeStand
                 UserInterface.GameOver(player1);
             }
             //else if player ran out of money
+            else if ((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
+            {
+                UserInterface.Bankrupt();
+            }
         }
     }
 }
