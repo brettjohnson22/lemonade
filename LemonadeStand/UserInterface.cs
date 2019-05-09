@@ -61,7 +61,7 @@ namespace LemonadeStand
         }
         public static void SugarTank()
         {
-            Console.WriteLine("A super fancy food truck that makes delicious-looking blended beverages parks right next to you, threatening to steal all your business. While the driver is distracted, you pour all your sugar in the truck's generator. The blender sputters and whirrs before stopping all together, smoke rising from the truck. The driver glares at you before driving off for repairs. Your business is safe for now, but you'll have to buy more sugar tomorrow.");
+            Console.WriteLine("A super fancy food truck that makes delicious-looking blended beverages parks right next to you, threatening to steal all your business. While the driver is distracted by pouring pomegranate seeds into the blender, you pour all your sugar in the truck's generator. The blender sputters and whirrs before stopping all together, smoke rising from the back of the truck. The driver glares at you before driving off for repairs. Your business is safe for now, but you'll have to buy more sugar tomorrow.");
             Console.ReadLine();
         }
         public static void BullySwipe()

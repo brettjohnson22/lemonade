@@ -81,14 +81,28 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
+            if (weather.actualWeather == "cloudy")
+            {
+                decisionFactors--;
+            }
             if (weather.actualWeather == "rainy")
             {
+                decisionFactors--;
                 decisionFactors--;
             }
             if (weather.actualWeather == "storming")
             {
                 decisionFactors--;
                 decisionFactors--;
+                decisionFactors--;
+            }
+            if (weather.temperature < 65)
+            {
+                decisionFactors--;
+            }
+            if (weather.temperature > 85)
+            {
+                decisionFactors++;
             }
             return decisionFactors;
         }

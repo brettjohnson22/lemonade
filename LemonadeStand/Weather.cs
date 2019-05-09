@@ -17,39 +17,40 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Weather()
         {
-            actualWeather = DetermineWeather();
+            Random chaos = new Random();
+            double forecastRand = chaos.Next(5);
+            int weatherIndex = chaos.Next(7);
+            actualWeather = DetermineWeather(weatherIndex);
             temperature = DetermineTemperature(actualWeather);
-            forecast = DetermineForecast(temperature, actualWeather);
+            forecast = DetermineForecast(temperature, actualWeather, forecastRand);
         }
 
         //member methods (CAN DO)
-        public string DetermineWeather()
+        public string DetermineWeather(int weatherIndex)
         {
             conditions = new List<string>() { "sunny and dry", "sunny", "sunny", "cloudy", "cloudy", "rainy", "storming" };
-            Random rand = new Random();
-            int weatherindex = rand.Next(7);
-            string actualWeather = conditions[weatherindex];
+            string actualWeather = conditions[weatherIndex];
             return actualWeather;
         }
         public double DetermineTemperature(string actualweather)
         {
             double temp;
-            Random rand = new Random();
+            Random tempRand = new Random();
             if (actualweather == "sunny and dry")
             {
-                temp = rand.Next(75, 95);
+                temp = tempRand.Next(75, 95);
             }
             else if (actualweather == "sunny")
             {
-                temp = rand.Next(70, 85);
+                temp = tempRand.Next(70, 85);
             }
             else
             {
-                temp = rand.Next(55, 80);
+                temp = tempRand.Next(55, 80);
             }
             return temp;
         }
-        public string DetermineForecast(double temp, string weather)
+        public string DetermineForecast(double temp, string weather, double chaos)
         {
             if(temp < 62)
             {
@@ -63,8 +64,6 @@ namespace LemonadeStand
             {
                 forecast = "hot ";
             }
-            Random rand = new Random();
-            double chaos = rand.Next(5);
             if (weather == "sunny and dry")
             {
                 switch (chaos)
@@ -147,10 +146,10 @@ namespace LemonadeStand
                         forecast += "and rain likely";
                         break;
                     case 3:
-                        forecast += "with a thunderstorm watch";
+                        forecast += "and likely overcast";
                         break;
                     case 4:
-                        forecast += "and likely overcast";
+                        forecast += "with a thunderstorm watch in effect";
                         break;
                 }
             }
