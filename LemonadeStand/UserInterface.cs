@@ -73,6 +73,8 @@ namespace LemonadeStand
         {
             Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}");
             Console.ReadLine();
+            Console.ResetColor();
+            Console.Clear();
         }
         public static void Bankrupt()
         {
@@ -103,6 +105,19 @@ namespace LemonadeStand
         public static void UseInPitcher(double amount, string ingredient)
         {
             Console.WriteLine($"You will be using {amount} {ingredient} per pitcher. Use up/down arrows to adjust. Hit 'enter' when done.");
+        }
+        public static void ClearOldLine()
+        {
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            int returnplacement = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, returnplacement);
+        }
+        public static void ChangeTextColor()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Clear();
         }
     }
 }

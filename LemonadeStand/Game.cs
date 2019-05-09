@@ -18,12 +18,11 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Game()
         {
-
         }
         //member methods (CAN DO)
         public void Welcome()
         {
-            
+            UserInterface.ChangeTextColor();
             player1 = new Player();
             dayCounter = 0;
             cupsPerPitcher = 6;

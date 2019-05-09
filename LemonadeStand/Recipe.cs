@@ -36,20 +36,20 @@ namespace LemonadeStand
                         {
                             amountOfLemons++;
                         }
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         if(amountOfLemons > 1)
                         {
                             amountOfLemons--;
                         }
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
                         break;
                     default:
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                 }
             }
@@ -69,20 +69,20 @@ namespace LemonadeStand
                         {
                             amountOfSugar++;
                         }
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         if (amountOfSugar > 1)
                         {
                             amountOfSugar--;
                         }
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
                         break;
                     default:
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                 }
             }
@@ -102,31 +102,23 @@ namespace LemonadeStand
                         {
                             amountOfIce++;
                         }
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         if (amountOfIce > 1)
                         {
                             amountOfIce--;
                         }
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.Enter:
                         keepGoing = false;
                         break;
                     default:
-                        ClearOldLine();
+                        UserInterface.ClearOldLine();
                         break;
                 }
             }
-        }
-        private void ClearOldLine()
-        {
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
-            int returnplacement = Console.CursorTop;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, returnplacement);
         }
     }
 }

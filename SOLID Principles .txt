@@ -1,0 +1,9 @@
+SOLID Design
+
+1. Single Responsibility
+
+I originally had a single method in the Day class that did the job of determining how many customers will come by the stand, create a list of customers subclasses of that length, then determine which of them would purchase a cup. I realized this wasn't SOLID, so I broke it down into three separate methods, one that found the number of potential customers, one that created the list of customers, and one that determined who in the list would buy a cup. This proved to be useful, since it allowed me to display the number of potential customers to the player to help them plan for future days.
+
+2. Liskov Substitution Principle
+
+All customers that the program generates are subclasses of the Customer class, and all function identically.
