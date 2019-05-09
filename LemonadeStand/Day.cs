@@ -41,13 +41,13 @@ namespace LemonadeStand
             else if (weather.actualWeather == "rainy")
             {
                 {
-                    numberOfPotential = rand.Next(5, 12);
+                    numberOfPotential = rand.Next(5, 10);
                 }
             }
             else if (weather.actualWeather == "storming")
             {
                 {
-                    numberOfPotential = rand.Next(10);
+                    numberOfPotential = rand.Next(6);
                 }
             }
             return numberOfPotential;

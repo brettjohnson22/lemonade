@@ -25,7 +25,7 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public string DetermineWeather()
         {
-            conditions = new List<string>() { "sunny and dry", "sunny", "sunny", "sunny", "cloudy", "cloudy", "rainy", "storming" };
+            conditions = new List<string>() { "sunny and dry", "sunny", "sunny", "cloudy", "cloudy", "rainy", "storming" };
             Random rand = new Random();
             int weatherindex = rand.Next(7);
             string actualWeather = conditions[weatherindex];

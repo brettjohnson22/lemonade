@@ -62,11 +62,11 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
-            if (price > 7)
+            if (price > 5)
             {
                 decisionFactors--;
             }
-            if (price > 9)
+            if (price > 7)
             {
                 decisionFactors--;
                 decisionFactors--;

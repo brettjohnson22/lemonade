@@ -65,8 +65,13 @@ namespace LemonadeStand
             {
                 decisionFactors--;
             }
+            if (weather.actualWeather == "rainy")
+            {
+                decisionFactors--;
+            }
             if (weather.actualWeather == "storming")
             {
+                decisionFactors--;
                 decisionFactors--;
             }
             if (price > 7)

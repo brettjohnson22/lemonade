@@ -253,7 +253,7 @@ namespace LemonadeStand
             while (dayCounter < 7)
             {
                 EachDay();
-                player1.myInventory.TerribleMisfortune();
+                //player1.myInventory.TerribleMisfortune();
                 if((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
                 {
                     break;
@@ -265,7 +265,14 @@ namespace LemonadeStand
         {
             if (dayCounter == 7)
             {
-                UserInterface.GameOver(player1);
+                if(player1.myInventory.totalProfit >= 100)
+                {
+                    UserInterface.GameOver100(player1);
+                }
+                else
+                {
+                    UserInterface.GameOver(player1);
+                }
             }
             else if ((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
             {

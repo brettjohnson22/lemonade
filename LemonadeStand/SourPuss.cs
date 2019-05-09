@@ -43,6 +43,10 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
+            if (weather.actualWeather == "cloudy")
+            {
+                decisionFactors--;
+            }
             if (weather.actualWeather == "rainy" || weather.actualWeather == "storming")
             {
                 decisionFactors--;
@@ -52,7 +56,11 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
-            if (price > 3)
+            if (price > 4)
+            {
+                decisionFactors--;
+            }
+            if (price >= 5)
             {
                 decisionFactors--;
             }
@@ -61,7 +69,7 @@ namespace LemonadeStand
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (decisionFactors >=2)
+            if (decisionFactors > 2)
             {
                 decision = true;
             }

@@ -71,15 +71,24 @@ namespace LemonadeStand
         }
         public static void GameOver(Player player)
         {
-            Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}");
+            Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}.");
+            Console.ReadLine();
+            Console.ResetColor();
+            Console.Clear();
+        }
+        public static void GameOver100(Player player)
+        {
+            Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}. Looks like there's a new Lemonade Tycoon on the block!");
             Console.ReadLine();
             Console.ResetColor();
             Console.Clear();
         }
         public static void Bankrupt()
         {
-            Console.WriteLine("You dont have enough money to make any more lemonade! Next time be more careful!");
+            Console.WriteLine("You dont have enough money to make any more lemonade! Next time be more penny wise!");
             Console.ReadLine();
+            Console.ResetColor();
+            Console.Clear();
         }
         public static void NeedSupplies()
         {

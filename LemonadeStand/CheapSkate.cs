@@ -27,10 +27,10 @@ namespace LemonadeStand
                 decisionFactors++;
                 decisionFactors++;
             }
-            if (weather.actualWeather == "sunny")
-            {
-                decisionFactors++;
-            }
+            //if (weather.actualWeather == "sunny")
+            //{
+            //    decisionFactors++;
+            //}
             if (weather.temperature > 80 && recipe.amountOfIce > 16)
             {
                 decisionFactors++;
@@ -47,6 +47,10 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
+            if (weather.actualWeather == "cloudy")
+            {
+                decisionFactors--;
+            }
             if (weather.actualWeather == "rainy" || weather.actualWeather == "storming")
             {
                 decisionFactors--;
@@ -58,6 +62,10 @@ namespace LemonadeStand
                 decisionFactors++;
             }
             if (price > 3)
+            {
+                decisionFactors--;
+            }
+            if (price >= 5)
             {
                 decisionFactors--;
             }

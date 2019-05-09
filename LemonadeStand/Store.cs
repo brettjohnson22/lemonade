@@ -26,9 +26,9 @@ namespace LemonadeStand
         static Store()
         {
             lemonCost = 4;
-            lemonSale = 8;
-            sugarCost = 3;
-            sugarSale = 5;
+            lemonSale = 5;
+            sugarCost = 4;
+            sugarSale = 8;
             iceCost = 5;
             iceSale = 100;
         }
