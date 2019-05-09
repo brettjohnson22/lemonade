@@ -11,10 +11,7 @@ namespace LemonadeStand
         //member variables (HAS A)
 
         //constructor (SPAWNER)
-        //public UserInterface()
-        //{
 
-        //}
         //member methods (CAN DO)
         public static void IntroText()
         {
@@ -39,10 +36,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nGo to store, change recipe, or proceed?\nType 'S' for store, 'R' for recipe', or 'P' to proceed.");
         }
-        public static void EndOfDay(Day day, double customers, double price, double sales, Inventory inv)
+        public static void EndOfDay(Day day, double customers, double price, double sales, double profit, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales}. You now have $" + inv.myWallet + "." );
+            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales} for a profit of ${profit}. You now have $" + inv.myWallet + "." );
         }
         public static void EnterANumber()
         {
@@ -63,6 +60,40 @@ namespace LemonadeStand
         {
             Console.WriteLine("A super fancy food truck that makes delicious-looking blended beverages parks right next to you, threatening to steal all your business. While the driver is distracted, you pour all your sugar in the truck's generator. The blender sputters and whirrs before stopping all together, smoke rising from the truck. The driver glares at you before driving off for repairs. Your business is safe for now, but you'll have to buy more sugar tomorrow.");
             Console.ReadLine();
-        }       
+        }
+        public static void BullySwipe()
+        {
+            Console.WriteLine("The neighborhood bully swiped $5 when you weren't looking. What a jerk!");
+            Console.ReadLine();
+        }
+        public static void GameOver(Player player)
+        {
+            Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}");
+            Console.ReadLine();
+        }
+        public static void NeedSupplies()
+        {
+            Console.WriteLine("You don't have enough supplies. Buy more? 'Y' for yes, 'N' for no.");
+        }
+        public static void PitcherPrompt(double price)
+        {
+            Console.WriteLine($"\nCharging ${price} per cup. Each pitcher makes {Game.cupsPerPitcher} cups.\nHow many pitchers will you make today?");
+        }
+        public static void PricePrompt()
+        {
+            Console.WriteLine("\nWhat will you set today's price at? (In dollars)");
+        }
+        public static void CostDisplay(double costOfCup)
+        {
+            Console.WriteLine($"Each cup costs you ${costOfCup}.");
+        }
+        public static void ChangePrompt()
+        {
+            Console.WriteLine("\nWhich do you want to change?\n");
+        }
+        public static void CantAfford()
+        {
+            Console.WriteLine($"\nYou can't afford this. Make more money!");
+        }
     }
 }

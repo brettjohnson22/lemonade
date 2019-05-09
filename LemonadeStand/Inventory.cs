@@ -55,10 +55,9 @@ namespace LemonadeStand
                 case 9:
                     if (myWallet > 15)
                     {
-                        Console.WriteLine("The neighborhood bully swiped $5 when you weren't looking. What a jerk!");
                         myWallet -= 5;
                         totalProfit -= 5;
-                        Console.ReadLine();
+                        UserInterface.BullySwipe();
                     }
                     break;
             }

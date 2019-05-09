@@ -36,8 +36,8 @@ namespace LemonadeStand
         }
         public void DisplayCost()
         {
-            double costofcup = CalculateCost();
-            Console.WriteLine($"Each cup costs you ${costofcup}.");
+            double costOfCup = CalculateCost();
+            UserInterface.CostDisplay(costOfCup);
         }
         public void EachDay()
         {
@@ -60,18 +60,18 @@ namespace LemonadeStand
             List<Customer> potentialCustomers = day.GiveCustomersPersonalities(numberOfPotentialCustomers);
             double actualCustomers = day.DeterminePayingCustomers(day.weather, player1.myInventory.myRecipe, potentialCustomers, cups, price);
             double sales = TotalSales(price, actualCustomers);
-            double dailyexpense = DailyExpense(pitchers);
-            double dailyprofit = DailyProfits(sales, dailyexpense);
+            double dailyExpense = DailyExpense(pitchers);
+            double dailyProfit = DailyProfits(sales, dailyExpense);
             UpdateWallet(player1.myInventory, sales);
-            UpdateTotalProfits(player1.myInventory, dailyprofit);
-            UserInterface.EndOfDay(day, actualCustomers, price, sales, player1.myInventory);
+            UpdateTotalProfits(player1.myInventory, dailyProfit);
+            UserInterface.EndOfDay(day, actualCustomers, price, sales, dailyProfit, player1.myInventory);
             Console.ReadLine();
         }
         public double GetPrice()
         {
             MainDisplay();
             double price = 0;
-            Console.WriteLine("\nWhat will you set today's price at? (In dollars)");
+            UserInterface.PricePrompt();
             try
             {
                 price = double.Parse(Console.ReadLine());
@@ -86,7 +86,7 @@ namespace LemonadeStand
         {
             MainDisplay();
             double pitchers = 0;
-            Console.WriteLine($"\nCharging ${price} per cup. Each pitcher makes {cupsPerPitcher} cups.\nHow many pitchers will you make today?");
+            UserInterface.PitcherPrompt(price);
             try
             {
                 pitchers = double.Parse(Console.ReadLine());
@@ -104,7 +104,7 @@ namespace LemonadeStand
             }
             else 
             {
-                Console.WriteLine("You don't have enough supplies. Buy more? 'Y' for yes, 'N' for no.");
+                UserInterface.NeedSupplies();
                 string input = Console.ReadLine();
                 switch (input.ToLower())
                 {
@@ -191,7 +191,7 @@ namespace LemonadeStand
             while (!valid)
             {
                 MainDisplay();
-                Console.WriteLine("\nWhich do you want to change?\n");
+                UserInterface.ChangePrompt();
                 UserInterface.IngredientPrompt();
                 string input = Console.ReadLine();
                 switch (input.ToLower())
@@ -231,7 +231,7 @@ namespace LemonadeStand
         public double DailyExpense(double pitchers)
         {
             double costofcup = CalculateCost();
-            double expense = pitchers * costofcup;
+            double expense = pitchers * (costofcup * cupsPerPitcher);
             return expense;
         }
         public double DailyProfits(double sales, double dailyexpense)
@@ -252,7 +252,7 @@ namespace LemonadeStand
             while (dayCounter < 7)
             {
                 EachDay();
-                //player1.myInventory.TerribleMisfortune();
+                player1.myInventory.TerribleMisfortune();
                 if((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
                 {
                     break;
@@ -264,8 +264,7 @@ namespace LemonadeStand
         {
             if (dayCounter == 7)
             {
-                Console.WriteLine($"Week has ended! Your total wallet amount is ${player1.myInventory.myWallet}. Your net profit for the week is ${player1.myInventory.totalProfit}");
-                Console.ReadLine();
+                UserInterface.GameOver(player1);
             }
             //else if player ran out of money
         }

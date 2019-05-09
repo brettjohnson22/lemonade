@@ -44,7 +44,7 @@ namespace LemonadeStand
             }
             else
             {
-                Console.WriteLine("\nYou can't afford these lemons.");
+                UserInterface.CantAfford();
             }
         }
         public static void SellSugar(Inventory inv)
@@ -58,7 +58,7 @@ namespace LemonadeStand
             }
             else
             {
-                Console.WriteLine("\nYou can't afford this sugar.");
+                UserInterface.CantAfford();
             }
         }
         public static void SellIce(Inventory inv)
@@ -72,7 +72,7 @@ namespace LemonadeStand
             }
             else
             {
-                Console.WriteLine("\nYou can't afford this ice.");
+                UserInterface.CantAfford();
             }
         }
 
