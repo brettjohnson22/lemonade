@@ -54,7 +54,7 @@ namespace LemonadeStand
             {
                 decisionFactors--;
             }
-            if (weather.actualWeather == "storming")
+            if (weather.actualWeather == "rainy" || weather.actualWeather == "storming")
             {
                 decisionFactors--;
             }

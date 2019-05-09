@@ -44,10 +44,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nGo to store, change recipe, or proceed?\nType 'S' for store, 'R' for recipe', or 'P' to proceed.");
         }
-        public static void EndOfDay(Day day, double customers, double price, double sales, double profit, Inventory inv)
+        public static void EndOfDay(Day day, double potential, double customers, double price, double sales, double profit, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales} for a profit of ${profit}. You now have $" + inv.myWallet + "." );
+            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\n{potential} people walked by your stand.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales} for a profit of ${profit}. You now have $" + inv.myWallet + "." );
         }
         public static void IceMelt()
         {
@@ -56,7 +56,7 @@ namespace LemonadeStand
         }
         public static void LemonToss()
         {
-            Console.WriteLine("As you were packing up your lemonade stand for the night, a horde of zombies shambles down your street towards you. You pelt them with lemons until they get the message and stumble off in the opposite direction. You're safe for now, but unfortunately you'll have to buy more lemons tomorrow.");
+            Console.WriteLine("As you're packing up your lemonade stand for the night, a horde of caffiene-deprived programmers shamble down your street towards you. You pelt them with lemons until they get the message and stumble off in the opposite direction. You're safe for now, but unfortunately you'll have to buy more lemons tomorrow.");
             Console.ReadLine();
         }
         public static void SugarTank()

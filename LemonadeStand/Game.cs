@@ -45,9 +45,10 @@ namespace LemonadeStand
             day = new Day(dayCounter);
             double pitchers = 0;
             double price = 0;
+            MainOptions();
             while (price == 0)
             {
-                MainOptions();
+                MainDisplay();
                 price = GetPrice();
             }
             while(pitchers == 0)
@@ -58,13 +59,13 @@ namespace LemonadeStand
             double cups = player1.PourCups(pitchers);
             double numberOfPotentialCustomers = day.DetermineNumberOfPotentialCustomers(day.weather);
             List<Customer> potentialCustomers = day.GiveCustomersPersonalities(numberOfPotentialCustomers);
-            double actualCustomers = day.DeterminePayingCustomers(day.weather, player1.myInventory.myRecipe, potentialCustomers, cups, price);
+            double actualCustomers = day.DeterminePayingCustomers(potentialCustomers, day.weather, player1.myInventory.myRecipe, price, cups);
             double sales = TotalSales(price, actualCustomers);
             double dailyExpense = DailyExpense(pitchers);
             double dailyProfit = DailyProfits(sales, dailyExpense);
             UpdateWallet(player1.myInventory, sales);
             UpdateTotalProfits(player1.myInventory, dailyProfit);
-            UserInterface.EndOfDay(day, actualCustomers, price, sales, dailyProfit, player1.myInventory);
+            UserInterface.EndOfDay(day, numberOfPotentialCustomers, actualCustomers, price, sales, dailyProfit, player1.myInventory);
             Console.ReadLine();
         }
         public double GetPrice()
@@ -125,8 +126,8 @@ namespace LemonadeStand
         }
         public void MainOptions()
         {
-            bool valid = false;
-            while (!valid)
+            bool proceed = false;
+            while (!proceed)
             {
                 MainDisplay();
                 UserInterface.OptionPrompt();
@@ -144,7 +145,7 @@ namespace LemonadeStand
                         GoToStore();
                         break;
                     case "p":
-                        valid = true;
+                        proceed = true;
                         break;
                 }
             }
@@ -152,8 +153,8 @@ namespace LemonadeStand
         public void GoToStore()
         {
             MainDisplay();
-            bool valid = false;
-            while (!valid)
+            bool proceed = false;
+            while (!proceed)
             {
                 UserInterface.StorePrices();
                 string input = Console.ReadLine();
@@ -178,17 +179,18 @@ namespace LemonadeStand
                         MainDisplay();
                         break;
                     case "p":
-                        valid = true;
+                        proceed = true;
                         break;
                     default:
+                        MainDisplay();
                         break;
                 }
             }
         }
         public void ChangeRecipe()
         { 
-            bool valid = false;
-            while (!valid)
+            bool proceed = false;
+            while (!proceed)
             {
                 MainDisplay();
                 UserInterface.ChangePrompt();
@@ -215,7 +217,7 @@ namespace LemonadeStand
                         player1.myInventory.myRecipe.AdjustIce(player1.myInventory.ice);
                         break;
                     case "p":
-                        valid = true;
+                        proceed = true;
                         break;
                     default:
                         break;
@@ -266,7 +268,6 @@ namespace LemonadeStand
             {
                 UserInterface.GameOver(player1);
             }
-            //else if player ran out of money
             else if ((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
             {
                 UserInterface.Bankrupt();

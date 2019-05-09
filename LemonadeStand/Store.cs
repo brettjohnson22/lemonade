@@ -29,7 +29,7 @@ namespace LemonadeStand
             lemonSale = 8;
             sugarCost = 3;
             sugarSale = 5;
-            iceCost = 3;
+            iceCost = 5;
             iceSale = 100;
         }
         //member methods (CAN DO)
@@ -75,6 +75,5 @@ namespace LemonadeStand
                 UserInterface.CantAfford();
             }
         }
-
     }
 }
