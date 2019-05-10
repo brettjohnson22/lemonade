@@ -227,9 +227,13 @@ namespace LemonadeStand
         }
         public double CalculateCost(Player player)
         {
-            double costofpitcher = (player.myRecipe.NumberInRecipe("lemon") * (store.lemon.CostPerOrder / store.lemon.SellAmount) + player.myRecipe.NumberInRecipe("sugar") * (store.sugar.CostPerOrder / store.sugar.SellAmount) + player.myRecipe.NumberInRecipe("ice") * (store.ice.CostPerOrder / store.ice.SellAmount));
-            double costofcup = Math.Round(costofpitcher / cupsPerPitcher, 2);
-            return costofcup;
+            double costOfPitcher = 0;
+            foreach (StoreItem item in player.myRecipe.recipeList)
+            {
+                costOfPitcher += (item.CostPerOrder / item.SellAmount);
+            }
+            double costOfCup = Math.Round(costOfPitcher / cupsPerPitcher, 2);
+            return costOfCup;
         }
         public double DailyExpense(Player player, double pitchers)
         {
