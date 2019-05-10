@@ -11,22 +11,21 @@ namespace LemonadeStand
         //member variables (HAS A)
         public double myWallet;
         public double totalProfit;
-        //public Recipe myRecipe;
         public List<StoreItem> allItems;
 
 
         //constructor (SPAWNER)
         public Inventory()
         {
-            //myRecipe = new Recipe();
             myWallet = 10;
             totalProfit = 0;
+            StartingStock();
         }
         //member methods (CAN DO)
         public void StartingStock()
         {
-            int startingLemons = 100;
-            int startingSugar = 100;
+            int startingLemons = 10;
+            int startingSugar = 10;
             int startingIce = 100;
             allItems = new List<StoreItem>();
             for (int i = 0; i < startingLemons; i++)

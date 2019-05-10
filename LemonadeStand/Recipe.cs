@@ -14,6 +14,7 @@ namespace LemonadeStand
         //constructor (SPAWNER)
         public Recipe()
         {
+            StartingRecipe();
         }
         //member methods (CAN DO)
 
