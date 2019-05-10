@@ -11,9 +11,6 @@ namespace LemonadeStand
         //member variables (HAS A)
         public double myWallet;
         public double totalProfit;
-        //public double lemons;
-        //public double sugar;
-        //public double ice;
         public Recipe myRecipe;
         public List<StoreItem> allItems;
 
@@ -24,9 +21,6 @@ namespace LemonadeStand
             myRecipe = new Recipe();
             myWallet = 10;
             totalProfit = 0;
-            //lemons = 10;
-            //sugar = 20;
-            //ice = 100;
         }
         //member methods (CAN DO)
         public void StartingStock()
@@ -66,15 +60,15 @@ namespace LemonadeStand
             {
                 for (int i = allItems.Count - 1; i >= 0; i--)
                 {
-                        if (allItems[i].name == itemName)
+                    if (allItems[i].name == itemName)
+                    {
+                        allItems.Remove(allItems[i]);
+                        counter++;
+                        if(counter == adjustment)
                         {
-                            allItems.Remove(allItems[i]);
-                            counter++;
-                            if(counter == adjustment)
-                            {
-                                break;
-                            }
+                            break;
                         }
+                    }
                 }
             }
         }

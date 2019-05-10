@@ -63,14 +63,14 @@ namespace LemonadeStand
                         if (currentAmount < inventory.NumberOfItems(item.name))
                         {
                             T adjustment = new T();
-                            recipeList.Add(adjustment);//add StoreItem of subclass to recipelist;
+                            recipeList.Add(adjustment);
                         }
                         UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
                         if (currentAmount > 1)
                         {
-                            SubtractRecipeItem(item.name);//remove StoreItem of subclass to recipelist
+                            SubtractRecipeItem(item.name);
                         }
                         UserInterface.ClearOldLine();
                         break;

@@ -35,6 +35,7 @@ namespace LemonadeStand
         public static void CantAfford()
         {
             Console.WriteLine($"\nYou can't afford this. Make more money!");
+            Console.ReadLine();
         }
         public static void IngredientPrompt()
         {

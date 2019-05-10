@@ -166,19 +166,19 @@ namespace LemonadeStand
                     case "lemons":
                         goto case "l";
                     case "l":
-                        store.SellItem(player1.myInventory, store.lemon);
+                        store.SellItem(player1.myInventory, ref store.lemon);
                         MainDisplay();
                         break;
                     case "sugar":
                         goto case "s";
                     case "s":
-                        store.SellItem(player1.myInventory, store.sugar);
+                        store.SellItem(player1.myInventory, ref store.sugar);
                         MainDisplay();
                         break;
                     case "ice":
                         goto case "i";
                     case "i":
-                        store.SellItem(player1.myInventory, store.ice);
+                        store.SellItem(player1.myInventory, ref store.ice);
                         MainDisplay();
                         break;
                     case "p":

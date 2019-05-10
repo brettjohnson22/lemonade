@@ -27,34 +27,15 @@ namespace LemonadeStand
             ice = new Ice();
         }
         //member methods (CAN DO)
-        public void SellItem(Inventory inv, StoreItem itemToSell)
+        public void SellItem<T>(Inventory inv, ref T itemToSell) where T : StoreItem, new()
         {
-            if (inv.myWallet >= itemToSell.CostPerOrder)
+            if (inv.myWallet >= itemToSell.costPerOrder)
             {
-                if (itemToSell.Name == "lemon")
+                for (int i = 0; i < itemToSell.sellAmount; i++)
                 {
-                    for (int i = 0; i < itemToSell.SellAmount; i++)
-                    {
-                        inv.allItems.Add(new Lemon());
-                    }
-                    inv.myWallet -= lemon.costPerOrder;
+                    inv.allItems.Add(new T());
                 }
-                else if (itemToSell.Name == "sugar")
-                {
-                    for (int i = 0; i < itemToSell.SellAmount; i++)
-                    {
-                        inv.allItems.Add(new Sugar());
-                    }
-                    inv.myWallet -= sugar.costPerOrder;
-                }
-                else if (itemToSell.Name == "ice")
-                {
-                    for (int i = 0; i < itemToSell.SellAmount; i++)
-                    {
-                        inv.allItems.Add(new Ice());
-                    }
-                    inv.myWallet -= ice.costPerOrder;
-                }
+                inv.myWallet -= itemToSell.costPerOrder;
             }
             else
             {
