@@ -14,12 +14,12 @@ namespace LemonadeStand
         public Ice ice;
 
         //constructor (SPAWNER)
-        static Store()
-        {
-            new Lemon();
-            new Sugar();
-            new Ice();
-        }
+        //static Store()
+        //{
+        //    new Lemon();
+        //    new Sugar();
+        //    new Ice();
+        //}
         public Store()
         {
             lemon = new Lemon();

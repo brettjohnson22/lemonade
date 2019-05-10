@@ -6,6 +6,9 @@ I originally had a single method in the Day class that did the job of determinin
 
 Similarly, I originally had one giant method in each customer subclass that determined whether they would buy a cup based on a bunch of different factors, with only some being unique to the subclass. So I broke it into 3 separate methods that determine how the customer felt about the recipe, the weather, and the price, and then a separate method that looks at those 3 results. I put these into the customer parent class, and this made it much easier to only adjust smaller parts in each subclass, rather than each subclass having duplicate code.
 
-2. Liskov Substitution Principle
+2. OCP
+I had a fully functional lemonade stand on Thursday and decided to read up on SOLID principles and found the original article by Martin. I realized that much of what I coded violated OCP. I had separate methods for modifying and using each ingredient in several places, as well as having the number of lemons/sugar/ice just being doubles that I added or subtracted from. It would be nearly impossible to do something as simple as add a new ingredient to the program without having to add a huge amount of code. So I changed the ingredients to classes, then I had to learn about generic methods in order to create single methods that were able to handle any of the subclasses of items. Having the player inventory and recipe exist as lists of objects made it much easier to work with and more versatile as I went back through the program. For example, the method for calculating the cost of each pitcher now just checks the cost of each item in the recipe list, instead of relying on the doubles that represented the number of lemons, sugar, and ice.
 
-All customers that the program generates are subclasses of the Customer class, and all function identically.
+3. Liskov Substitution Principle
+
+All customers that the program generates are subclasses of the Customer class, and all function identically. Same for all the ingredients functioning as store items.
