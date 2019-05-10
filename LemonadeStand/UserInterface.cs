@@ -115,7 +115,8 @@ namespace LemonadeStand
         }
         public static void LowerNumber()
         {
-            Console.WriteLine("You seriously want that many people to play? Enter a smaller number:");
+            Console.WriteLine("You seriously want that many people to play? Try a smaller number.");
+            Console.ReadLine();
         }
         public static void ChangePrompt()
         {

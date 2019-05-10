@@ -74,7 +74,7 @@ namespace LemonadeStand
                     nameInput = Console.ReadLine();
                 }
                 while (nameInput == "");
-                playerList.Add(new Player() { name = nameInput, order = i });
+                playerList.Add(new Player() { name = nameInput });
             }
         }
         public void MainDisplay(Player player)
@@ -317,6 +317,7 @@ namespace LemonadeStand
                         }
                         if ((player.myInventory.myWallet < 3 && (player.myInventory.NumberOfItems("sugar") == 0 || player.myInventory.NumberOfItems("ice") == 0)) || (player.myInventory.myWallet < 4 && player.myInventory.NumberOfItems("lemons") == 0))
                         {
+                            UserInterface.Bankrupt(player);
                             player.bankrupt = true;
                             break;
                         }
@@ -343,10 +344,6 @@ namespace LemonadeStand
                 {
                     UserInterface.GameOver(player);
                 }
-            }
-            else if(player.bankrupt)
-            {
-                UserInterface.Bankrupt(player);
             }
         }
     }

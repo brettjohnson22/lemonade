@@ -12,7 +12,6 @@ namespace LemonadeStand
         public Inventory myInventory;
         public Recipe myRecipe;
         public string name;
-        public int order;
         public bool bankrupt;
 
         //constructor (SPAWNER)
