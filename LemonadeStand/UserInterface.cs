@@ -18,18 +18,23 @@ namespace LemonadeStand
             Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day. While you can charge less than a dollar per cup, keep in mind it's 2019 and a cup of lemonade costs $5 at Starbucks.\n\nThe weather and your recipe will affect sales.\nThere's also a small chance of a terrible misfortune affecting your supplies on any day.\n\nHow much can you make in 7 days?\n\nHit 'Enter' to start.");
             Console.ReadLine();
         }
+        //public static void DailyText(Day day, Inventory inv)
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountOfLemons} lemons, {inv.myRecipe.amountOfSugar} sugar, and {inv.myRecipe.amountOfIce} ice.\n");
+        //}
         public static void DailyText(Day day, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountOfLemons} lemons, {inv.myRecipe.amountOfSugar} sugar, and {inv.myRecipe.amountOfIce} ice.\n");
+            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.NumberOfItems("lemon")} lemons, {inv.NumberOfItems("sugar")} sugar, and {inv.NumberOfItems("ice")} ice.\n\nEach pitcher uses {inv.myRecipe.NumberInRecipe("lemon")} lemons, {inv.myRecipe.NumberInRecipe("sugar")} sugar, and {inv.myRecipe.NumberInRecipe("ice")} ice.\n");
         }
         public static void CostDisplay(double costOfCup)
         {
             Console.WriteLine($"Each cup costs you ${costOfCup}.");
         }
-        public static void StorePrices()
+        public static void StorePrices(Store store)
         {
-            Console.WriteLine($"\nYou are at the store.\n\n{Store.LemonSale} lemons for ${Store.LemonCost}\n{Store.SugarSale} sugar for ${Store.SugarCost}\n{Store.IceSale} ice for ${Store.IceCost}\n\nWhat do you want to buy?");
+            Console.WriteLine($"\nYou are at the store.\n\n{store.lemon.SellAmount} lemons for ${store.lemon.CostPerOrder}\n{store.sugar.SellAmount} sugar for ${store.sugar.CostPerOrder}\n{store.ice.SellAmount} ice for ${store.ice.CostPerOrder}\n\nWhat do you want to buy?");
             IngredientPrompt();
         }
         public static void CantAfford()

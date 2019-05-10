@@ -12,6 +12,7 @@ namespace LemonadeStand
         
         public Player player1;
         public Day day;
+        public Store store;
         public int dayCounter;
         public static double cupsPerPitcher;
 
@@ -24,6 +25,9 @@ namespace LemonadeStand
         {
             UserInterface.ChangeTextColor();
             player1 = new Player();
+            store = new Store();
+            player1.myInventory.StartingStock();
+            player1.myInventory.myRecipe.StartingRecipe();
             dayCounter = 0;
             cupsPerPitcher = 6;
             UserInterface.IntroText();
@@ -95,11 +99,14 @@ namespace LemonadeStand
             {
                 UserInterface.EnterANumber();
             }
-            if (pitchers * inv.myRecipe.amountOfLemons <= inv.lemons && pitchers * inv.myRecipe.amountOfSugar <= inv.sugar && pitchers * inv.myRecipe.amountOfIce <= inv.ice)
+            if (pitchers * inv.myRecipe.NumberInRecipe("lemon") <= inv.NumberOfItems("lemon") && pitchers * inv.myRecipe.NumberInRecipe("sugar") <= inv.NumberOfItems("sugar") && pitchers * inv.myRecipe.NumberInRecipe("ice") <= inv.NumberOfItems("ice"))
             {
-                inv.lemons -= (pitchers * inv.myRecipe.amountOfLemons);
-                inv.sugar -= (pitchers * inv.myRecipe.amountOfSugar);
-                inv.ice -= (pitchers * inv.myRecipe.amountOfIce);
+                inv.SubtractInventoryItem("lemon", inv.myRecipe.NumberInRecipe("lemon"));
+                inv.SubtractInventoryItem("sugar", inv.myRecipe.NumberInRecipe("sugar"));
+                inv.SubtractInventoryItem("ice", inv.myRecipe.NumberInRecipe("ice"));
+                //inv.lemons -= (pitchers * inv.myRecipe.amountOfLemons);
+                //inv.sugar -= (pitchers * inv.myRecipe.amountOfSugar);
+                //inv.ice -= (pitchers * inv.myRecipe.amountOfIce);
                 return pitchers;
             }
             else 
@@ -149,32 +156,69 @@ namespace LemonadeStand
                 }
             }
         }
+        //public void GoToStore()
+        //{
+        //    MainDisplay();
+        //    bool proceed = false;
+        //    while (!proceed)
+        //    {
+        //        UserInterface.StorePrices();
+        //        string input = Console.ReadLine();
+        //        switch (input.ToLower())
+        //        {
+        //            case "lemons":
+        //                goto case "l";
+        //            case "l":
+        //                Store.SellLemons(player1.myInventory);
+        //                MainDisplay();
+        //                break;
+        //            case "sugar":
+        //                goto case "s";
+        //            case "s":
+        //                Store.SellSugar(player1.myInventory);
+        //                MainDisplay();
+        //                break;
+        //            case "ice":
+        //                goto case "i";
+        //            case "i":
+        //                Store.SellIce(player1.myInventory);
+        //                MainDisplay();
+        //                break;
+        //            case "p":
+        //                proceed = true;
+        //                break;
+        //            default:
+        //                MainDisplay();
+        //                break;
+        //        }
+        //    }
+        //}
         public void GoToStore()
         {
             MainDisplay();
             bool proceed = false;
             while (!proceed)
             {
-                UserInterface.StorePrices();
+                UserInterface.StorePrices(store);
                 string input = Console.ReadLine();
                 switch (input.ToLower())
                 {
                     case "lemons":
                         goto case "l";
                     case "l":
-                        Store.SellLemons(player1.myInventory);
+                        store.SellItem(player1.myInventory, store.lemon);
                         MainDisplay();
                         break;
                     case "sugar":
                         goto case "s";
                     case "s":
-                        Store.SellSugar(player1.myInventory);
+                        store.SellItem(player1.myInventory, store.sugar);
                         MainDisplay();
                         break;
                     case "ice":
                         goto case "i";
                     case "i":
-                        Store.SellIce(player1.myInventory);
+                        store.SellItem(player1.myInventory, store.ice);
                         MainDisplay();
                         break;
                     case "p":
@@ -201,19 +245,22 @@ namespace LemonadeStand
                         goto case "l";
                     case "l":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustLemons(player1.myInventory.lemons);
+                        //player1.myInventory.myRecipe.AdjustLemons(player1.myInventory.NumberOfItems("lemon"));
+                        player1.myInventory.myRecipe.AdjustItem<Lemon>(player1.myInventory, ref store.lemon);
                         break;
                     case "sugar":
                         goto case "s";
                     case "s":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustSugar(player1.myInventory.sugar);
+                        //player1.myInventory.myRecipe.AdjustSugar(player1.myInventory.NumberOfItems("sugar"));
+                        player1.myInventory.myRecipe.AdjustItem<Sugar>(player1.myInventory, ref store.sugar);
                         break;
                     case "ice":
                         goto case "i";
                     case "i":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustIce(player1.myInventory.ice);
+                        //player1.myInventory.myRecipe.AdjustIce(player1.myInventory.NumberOfItems("ice"));
+                        player1.myInventory.myRecipe.AdjustItem<Ice>(player1.myInventory, ref store.ice);
                         break;
                     case "p":
                         proceed = true;
@@ -225,7 +272,7 @@ namespace LemonadeStand
         }
         public double CalculateCost()
         {
-            double costofpitcher = (player1.myInventory.myRecipe.amountOfLemons * (Store.LemonCost / Store.LemonSale) + player1.myInventory.myRecipe.amountOfSugar * (Store.SugarCost / Store.SugarSale) + player1.myInventory.myRecipe.amountOfIce * (Store.IceCost / Store.IceSale));
+            double costofpitcher = (player1.myInventory.myRecipe.NumberInRecipe("lemon") * (store.lemon.CostPerOrder / store.lemon.SellAmount) + player1.myInventory.myRecipe.NumberInRecipe("sugar") * (store.sugar.CostPerOrder / store.sugar.SellAmount) + player1.myInventory.myRecipe.NumberInRecipe("ice") * (store.ice.CostPerOrder / store.ice.SellAmount));
             double costofcup = Math.Round(costofpitcher / cupsPerPitcher, 2);
             return costofcup;
         }
@@ -253,8 +300,8 @@ namespace LemonadeStand
             while (dayCounter < 20)
             {
                 EachDay();
-                player1.myInventory.TerribleMisfortune();
-                if((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
+                //player1.myInventory.TerribleMisfortune();
+                if((player1.myInventory.myWallet < 3 && (player1.myInventory.NumberOfItems("sugar") == 0 || player1.myInventory.NumberOfItems("ice") == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.NumberOfItems("lemons") == 0))
                 {
                     break;
                 }
@@ -274,7 +321,7 @@ namespace LemonadeStand
                     UserInterface.GameOver(player1);
                 }
             }
-            else if ((player1.myInventory.myWallet < 3 && (player1.myInventory.sugar == 0 || player1.myInventory.ice == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.lemons == 0))
+            else if ((player1.myInventory.myWallet < 3 && (player1.myInventory.NumberOfItems("sugar") == 0 || player1.myInventory.NumberOfItems("ice") == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.NumberOfItems("lemons") == 0))
             {
                 UserInterface.Bankrupt();
             }

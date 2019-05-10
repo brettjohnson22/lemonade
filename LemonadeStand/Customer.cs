@@ -30,38 +30,38 @@ namespace LemonadeStand
         public virtual double LikeTheTaste(Weather weather, Recipe recipe)
         {
             double decisionFactors = 0;
-            if (weather.temperature > 80 && recipe.amountOfIce > 16)
+            if (weather.temperature > 80 && recipe.NumberInRecipe("ice") > 16)
             {
                 decisionFactors++;
             }
-            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.amountOfIce > 10 && recipe.amountOfIce <= 16)
+            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.NumberInRecipe("ice") > 10 && recipe.NumberInRecipe("ice") <= 16)
             {
                 decisionFactors++;
             }
-            if (weather.temperature < 63 && recipe.amountOfIce <= 12)
+            if (weather.temperature < 63 && recipe.NumberInRecipe("ice") <= 12)
             {
                 decisionFactors++;
             }
-            if (recipe.amountOfSugar >= recipe.amountOfLemons)
+            if (recipe.NumberInRecipe("sugar") >= recipe.NumberInRecipe("lemons"))
             {
                 decisionFactors++;
             }
-            if (recipe.amountOfLemons > recipe.amountOfSugar)
+            if (recipe.NumberInRecipe("lemons") > recipe.NumberInRecipe("sugar"))
             {
                 decisionFactors--;
             }
-            if (recipe.amountOfIce < 5 || recipe.amountOfIce > 20)
+            if (recipe.NumberInRecipe("ice") < 5 || recipe.NumberInRecipe("ice") > 20)
             {
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (recipe.amountOfSugar < 2 || recipe.amountOfSugar > 10)
+            if (recipe.NumberInRecipe("sugar") < 2 || recipe.NumberInRecipe("sugar") > 10)
             {
                 decisionFactors--;
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (recipe.amountOfLemons < 2 || recipe.amountOfLemons > 10)
+            if (recipe.NumberInRecipe("lemons") < 2 || recipe.NumberInRecipe("lemons") > 10)
             {
                 decisionFactors--;
                 decisionFactors--;

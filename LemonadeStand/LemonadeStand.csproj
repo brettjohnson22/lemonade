@@ -48,13 +48,17 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Ice.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="Lemon.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="SourPuss.cs" />
     <Compile Include="Store.cs" />
+    <Compile Include="StoreItem.cs" />
+    <Compile Include="Sugar.cs" />
     <Compile Include="SweetTooth.cs" />
     <Compile Include="UserInterface.cs" />
     <Compile Include="Weather.cs" />
