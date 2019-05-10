@@ -53,22 +53,16 @@ namespace LemonadeStand
             }
             return counter;
         }
-        public void SubtractInventoryItem(string itemName, double adjustment)
+        public void SubtractItemFromInventory(string itemName)
         {
-            int counter = 0;
+            foreach (StoreItem item in allItems)
             {
-                for (int i = allItems.Count - 1; i >= 0; i--)
+                if (item.Name == itemName)
                 {
-                    if (allItems[i].name == itemName)
-                    {
-                        allItems.Remove(allItems[i]);
-                        counter++;
-                        if(counter == adjustment)
-                        {
-                            break;
-                        }
-                    }
+                    allItems.Remove(item);
+                    break;
                 }
+
             }
         }
         public void TerribleMisfortune()
@@ -85,15 +79,15 @@ namespace LemonadeStand
                     break;
                 case 5:
                 case 6:
-                    SubtractInventoryItem("ice", NumberOfItems("ice"));
+                    allItems.RemoveAll(t => t.name == "ice");
                     UserInterface.IceMelt();
                     break;
                 case 7:
-                    SubtractInventoryItem("lemon", NumberOfItems("lemon"));
+                    allItems.RemoveAll(t => t.name == "lemon");
                     UserInterface.LemonToss();
                     break;
                 case 8:
-                    SubtractInventoryItem("sugar", NumberOfItems("sugar"));
+                    allItems.RemoveAll(t => t.name == "sugar");
                     UserInterface.SugarTank();
                     break;
                 case 9:

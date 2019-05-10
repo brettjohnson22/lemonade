@@ -99,9 +99,10 @@ namespace LemonadeStand
             }
             if (pitchers * player.myRecipe.NumberInRecipe("lemon") <= player.myInventory.NumberOfItems("lemon") && pitchers * player.myRecipe.NumberInRecipe("sugar") <= player.myInventory.NumberOfItems("sugar") && pitchers * player.myRecipe.NumberInRecipe("ice") <= player.myInventory.NumberOfItems("ice"))
             {
-                player.myInventory.SubtractInventoryItem("lemon", player.myRecipe.NumberInRecipe("lemon"));
-                player.myInventory.SubtractInventoryItem("sugar", player.myRecipe.NumberInRecipe("sugar"));
-                player.myInventory.SubtractInventoryItem("ice", player.myRecipe.NumberInRecipe("ice"));
+                foreach(StoreItem item in player.myRecipe.recipeList)
+                {
+                    player.myInventory.SubtractItemFromInventory(item.name);
+                }
                 return pitchers;
             }
             else 
