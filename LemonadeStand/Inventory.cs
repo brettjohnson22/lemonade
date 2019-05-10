@@ -31,8 +31,8 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public void StartingStock()
         {
-            int startingLemons = 10;
-            int startingSugar = 10;
+            int startingLemons = 100;
+            int startingSugar = 100;
             int startingIce = 100;
             allItems = new List<StoreItem>();
             for (int i = 0; i < startingLemons; i++)

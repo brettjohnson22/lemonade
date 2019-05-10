@@ -51,6 +51,7 @@ namespace LemonadeStand
             if (recipe.NumberInRecipe("sugar") > 3)
             {
                 decisionFactors++;
+                decisionFactors++;
             }
             if (recipe.NumberInRecipe("lemons") > recipe.NumberInRecipe("sugar"))
             {

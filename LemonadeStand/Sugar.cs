@@ -11,10 +11,6 @@ namespace LemonadeStand
         //member variables (HAS A)
 
         //constructor (SPAWNER)
-        //static Sugar()
-        //{
-
-        //}
         public Sugar()
         {
             sellAmount = 8;

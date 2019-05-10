@@ -12,10 +12,6 @@ namespace LemonadeStand
 
 
         //constructor (SPAWNER)
-        //static Ice()
-        //{
-
-        //}
         public Ice()
         {
             sellAmount = 100;

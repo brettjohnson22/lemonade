@@ -23,7 +23,7 @@ namespace LemonadeStand
             double weatherFactor = LikeTheWeather(weather);
             double priceFactor = LikeThePrice(price);
             bool decideToBuy = false;
-            if (tasteFactor + weatherFactor + priceFactor > 0)
+            if (tasteFactor + weatherFactor + priceFactor >= 0)
             {
                 decideToBuy = true;
             }

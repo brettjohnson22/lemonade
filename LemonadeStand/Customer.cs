@@ -81,10 +81,6 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
-            if (weather.actualWeather == "cloudy")
-            {
-                decisionFactors--;
-            }
             if (weather.actualWeather == "rainy")
             {
                 decisionFactors--;
@@ -96,7 +92,7 @@ namespace LemonadeStand
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (weather.temperature < 65)
+            if (weather.temperature < 60)
             {
                 decisionFactors--;
             }

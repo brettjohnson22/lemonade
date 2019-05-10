@@ -104,9 +104,6 @@ namespace LemonadeStand
                 inv.SubtractInventoryItem("lemon", inv.myRecipe.NumberInRecipe("lemon"));
                 inv.SubtractInventoryItem("sugar", inv.myRecipe.NumberInRecipe("sugar"));
                 inv.SubtractInventoryItem("ice", inv.myRecipe.NumberInRecipe("ice"));
-                //inv.lemons -= (pitchers * inv.myRecipe.amountOfLemons);
-                //inv.sugar -= (pitchers * inv.myRecipe.amountOfSugar);
-                //inv.ice -= (pitchers * inv.myRecipe.amountOfIce);
                 return pitchers;
             }
             else 
@@ -156,43 +153,6 @@ namespace LemonadeStand
                 }
             }
         }
-        //public void GoToStore()
-        //{
-        //    MainDisplay();
-        //    bool proceed = false;
-        //    while (!proceed)
-        //    {
-        //        UserInterface.StorePrices();
-        //        string input = Console.ReadLine();
-        //        switch (input.ToLower())
-        //        {
-        //            case "lemons":
-        //                goto case "l";
-        //            case "l":
-        //                Store.SellLemons(player1.myInventory);
-        //                MainDisplay();
-        //                break;
-        //            case "sugar":
-        //                goto case "s";
-        //            case "s":
-        //                Store.SellSugar(player1.myInventory);
-        //                MainDisplay();
-        //                break;
-        //            case "ice":
-        //                goto case "i";
-        //            case "i":
-        //                Store.SellIce(player1.myInventory);
-        //                MainDisplay();
-        //                break;
-        //            case "p":
-        //                proceed = true;
-        //                break;
-        //            default:
-        //                MainDisplay();
-        //                break;
-        //        }
-        //    }
-        //}
         public void GoToStore()
         {
             MainDisplay();
@@ -245,21 +205,18 @@ namespace LemonadeStand
                         goto case "l";
                     case "l":
                         MainDisplay();
-                        //player1.myInventory.myRecipe.AdjustLemons(player1.myInventory.NumberOfItems("lemon"));
                         player1.myInventory.myRecipe.AdjustItem<Lemon>(player1.myInventory, ref store.lemon);
                         break;
                     case "sugar":
                         goto case "s";
                     case "s":
                         MainDisplay();
-                        //player1.myInventory.myRecipe.AdjustSugar(player1.myInventory.NumberOfItems("sugar"));
                         player1.myInventory.myRecipe.AdjustItem<Sugar>(player1.myInventory, ref store.sugar);
                         break;
                     case "ice":
                         goto case "i";
                     case "i":
                         MainDisplay();
-                        //player1.myInventory.myRecipe.AdjustIce(player1.myInventory.NumberOfItems("ice"));
                         player1.myInventory.myRecipe.AdjustItem<Ice>(player1.myInventory, ref store.ice);
                         break;
                     case "p":

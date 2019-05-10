@@ -18,11 +18,6 @@ namespace LemonadeStand
             Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day. While you can charge less than a dollar per cup, keep in mind it's 2019 and a cup of lemonade costs $5 at Starbucks.\n\nThe weather and your recipe will affect sales.\nThere's also a small chance of a terrible misfortune affecting your supplies on any day.\n\nHow much can you make in 7 days?\n\nHit 'Enter' to start.");
             Console.ReadLine();
         }
-        //public static void DailyText(Day day, Inventory inv)
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.lemons} lemons, {inv.sugar} sugar, and {inv.ice} ice.\n\nEach pitcher uses {inv.myRecipe.amountOfLemons} lemons, {inv.myRecipe.amountOfSugar} sugar, and {inv.myRecipe.amountOfIce} ice.\n");
-        //}
         public static void DailyText(Day day, Inventory inv)
         {
             Console.Clear();

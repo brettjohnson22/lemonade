@@ -58,7 +58,7 @@ namespace LemonadeStand
             Random personalityDeterminer = new Random();
             for (int i = 0; i < numberOfPotential; i++)
             {
-                int personality = personalityDeterminer.Next(8);
+                int personality = personalityDeterminer.Next(9);
                 if (personality == 0 || personality == 1)
                 {
                     potentialCustomers.Add(new SourPuss());
@@ -71,11 +71,11 @@ namespace LemonadeStand
                 {
                     potentialCustomers.Add(new AverageJoe());
                 }
-                else if (personality == 6)
+                else if (personality == 6 || personality == 7)
                 {
                     this.potentialCustomers.Add(new YourMom());
                 }
-                else if (personality == 7)
+                else if (personality == 8)
                 {
                     this.potentialCustomers.Add(new CheapSkate());
                 }

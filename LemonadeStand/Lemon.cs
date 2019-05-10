@@ -11,12 +11,6 @@ namespace LemonadeStand
         //member variables (HAS A)
 
         //constructor (SPAWNER)
-        //static Lemon()
-        //{
-        //    sellAmount = 5;
-        //    costPerOrder = 4;
-        //    name = "lemon";
-        //}
         public Lemon()
         {
             sellAmount = 5;
