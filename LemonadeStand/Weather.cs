@@ -19,7 +19,7 @@ namespace LemonadeStand
         {
             Random chaos = new Random();
             double forecastRand = chaos.Next(5);
-            int weatherIndex = chaos.Next(7);
+            int weatherIndex = chaos.Next(8);
             actualWeather = DetermineWeather(weatherIndex);
             temperature = DetermineTemperature(actualWeather);
             forecast = DetermineForecast(temperature, actualWeather, forecastRand);
@@ -28,7 +28,7 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public string DetermineWeather(int weatherIndex)
         {
-            conditions = new List<string>() { "sunny and dry", "sunny", "sunny", "cloudy", "cloudy", "rainy", "storming" };
+            conditions = new List<string>() { "sunny and dry", "sunny", "sunny", "sunny", "cloudy", "cloudy", "rainy", "storming" };
             string actualWeather = conditions[weatherIndex];
             return actualWeather;
         }

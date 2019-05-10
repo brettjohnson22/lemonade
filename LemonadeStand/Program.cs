@@ -13,6 +13,7 @@ namespace LemonadeStand
             Game game = new Game();
             game.Welcome();
             game.RunWeek();
+
         }
     }
 }

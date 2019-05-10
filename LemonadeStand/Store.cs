@@ -12,18 +12,13 @@ namespace LemonadeStand
         public Lemon lemon;
         public Sugar sugar;
         public Ice ice;
-
+        
         //constructor (SPAWNER)
-        //static Store()
-        //{
-        //    new Lemon();
-        //    new Sugar();
-        //    new Ice();
-        //}
+
         public Store()
         {
             lemon = new Lemon();
-            sugar= new Sugar();
+            sugar = new Sugar();
             ice = new Ice();
         }
         //member methods (CAN DO)

@@ -15,13 +15,22 @@ namespace LemonadeStand
         //member methods (CAN DO)
         public static void IntroText()
         {
-            Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day. While you can charge less than a dollar per cup, keep in mind it's 2019 and a cup of lemonade costs $5 at Starbucks.\n\nThe weather and your recipe will affect sales.\nThere's also a small chance of a terrible misfortune affecting your supplies on any day.\n\nHow much can you make in 7 days?\n\nHit 'Enter' to start.");
-            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day. While you can charge less than a dollar per cup, keep in mind it's 2019 and a cup of lemonade costs $5 at Starbucks.\n\nThe weather and your recipe will affect sales.\nThere's also a small chance of a terrible misfortune affecting your supplies on any day.\n\nHow much can you make in 7 days?");
         }
-        public static void DailyText(Day day, Inventory inv, Recipe recipe)
+        public static void PlayerPrompt()
+        {
+            Console.WriteLine("\nEnter number of players:");
+        }
+        public static void NamePrompt(int i)
+        {
+            Console.WriteLine($"\nEnter name, for Player {i + 1} then hit 'Enter'");
+        }
+
+        public static void DailyText(Day day, Player player)
         {
             Console.Clear();
-            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.NumberOfItems("lemon")} lemons, {inv.NumberOfItems("sugar")} sugar, and {inv.NumberOfItems("ice")} ice.\n\nEach pitcher uses {recipe.NumberInRecipe("lemon")} lemons, {recipe.NumberInRecipe("sugar")} sugar, and {recipe.NumberInRecipe("ice")} ice.\n");
+            Console.WriteLine($"\nWelcome to Day {day.dayNumber}, {player.name}!\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${player.myInventory.myWallet}.\n\nCurrent Stock: {player.myInventory.NumberOfItems("lemon")} lemons, {player.myInventory.NumberOfItems("sugar")} sugar, and {player.myInventory.NumberOfItems("ice")} ice.\n\nEach pitcher uses {player.myRecipe.NumberInRecipe("lemon")} lemons, {player.myRecipe.NumberInRecipe("sugar")} sugar, and {player.myRecipe.NumberInRecipe("ice")} ice.\n");
         }
         public static void CostDisplay(double costOfCup)
         {
@@ -62,7 +71,7 @@ namespace LemonadeStand
         }
         public static void SugarTank()
         {
-            Console.WriteLine("A super fancy food truck that makes delicious-looking blended beverages parks right next to you, threatening to steal all your business. While the driver is distracted by pouring pomegranate seeds into the blender, you pour all your sugar in the truck's generator. The blender sputters and whirrs before stopping all together, smoke rising from the back of the truck. The driver glares at you before driving off for repairs. Your business is safe for now, but you'll have to buy more sugar tomorrow.");
+            Console.WriteLine("A super fancy food truck that makes delicious-looking blended beverages parks right next to you, threatening to steal all your business. While the driver is distracted by counting out pomegranate seeds to drop into the blender, you pour all your sugar into the truck's generator. The blender sputters and whirrs before stopping all together, smoke rising from the back of the truck. The driver glares at you before driving off for repairs. Your business is safe for now, but you'll have to buy more sugar tomorrow.");
             Console.ReadLine();
         }
         public static void BullySwipe()
@@ -72,24 +81,20 @@ namespace LemonadeStand
         }
         public static void GameOver(Player player)
         {
-            Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}.");
+            Console.WriteLine($"{player.name}, you made it to the end of the week! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}.");
             Console.ReadLine();
             Console.ResetColor();
             Console.Clear();
         }
         public static void GameOver100(Player player)
         {
-            Console.WriteLine($"Week has ended! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}. Looks like there's a new Lemonade Tycoon on the block!");
+            Console.WriteLine($"{player.name}, you made it to the end of the week! Your total wallet amount is ${ player.myInventory.myWallet}. Your net profit for the week is ${ player.myInventory.totalProfit}. Looks like there's a new Lemonade Tycoon on the block!");
             Console.ReadLine();
-            Console.ResetColor();
-            Console.Clear();
         }
-        public static void Bankrupt()
+        public static void Bankrupt(Player player)
         {
-            Console.WriteLine("You dont have enough money to make any more lemonade! Next time be more penny wise!");
+            Console.WriteLine($"{player.name}, you went Bankrupt! Next time be more pennywise!");
             Console.ReadLine();
-            Console.ResetColor();
-            Console.Clear();
         }
         public static void NeedSupplies()
         {
@@ -107,6 +112,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("You must enter a number. Try again.");
             Console.ReadLine();
+        }
+        public static void LowerNumber()
+        {
+            Console.WriteLine("You seriously want that many people to play? Enter a smaller number:");
         }
         public static void ChangePrompt()
         {

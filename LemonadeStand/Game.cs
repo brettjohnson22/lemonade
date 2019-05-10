@@ -10,11 +10,12 @@ namespace LemonadeStand
     {
         //member variables (HAS A)
         
-        public Player player1;
+        //public Player player1;
         public Day day;
         public Store store;
         public int dayCounter;
         public static double cupsPerPitcher;
+        public List<Player> playerList;
 
         //constructor (SPAWNER)
         public Game()
@@ -24,15 +25,61 @@ namespace LemonadeStand
         public void Welcome()
         {
             UserInterface.ChangeTextColor();
-            player1 = new Player();
             store = new Store();
             dayCounter = 0;
             cupsPerPitcher = 6;
-            UserInterface.IntroText();
+            int input = GetPlayerCount();
+            MakePlayers(input);
+        }
+        public int GetPlayerCount()
+        {
+            int input = 1;
+            bool valid;
+            do
+            {
+                UserInterface.IntroText();
+                UserInterface.PlayerPrompt();
+                try
+                {
+                    input = int.Parse(Console.ReadLine());
+                    if (input < 5)
+                    {
+                        valid = true;
+                    }
+                    else
+                    {
+                        UserInterface.LowerNumber();
+                        valid = false;
+                    }
+                }
+                catch (FormatException)
+                {
+                    UserInterface.EnterANumber();
+                    valid = false;
+                }
+            }
+            while (!valid);
+            return input;
+        }
+        public void MakePlayers(int input)
+        {
+            playerList = new List<Player>();
+            for (int i = 0; i < input; i++)
+            {
+                string nameInput = "";
+                do
+                {
+                    UserInterface.IntroText();
+                    UserInterface.NamePrompt(i);
+                    nameInput = Console.ReadLine();
+                }
+                while (nameInput == "");
+                playerList.Add(new Player() { name = nameInput, order = i });
+            }
         }
         public void MainDisplay(Player player)
         {
-            UserInterface.DailyText(day, player.myInventory, player.myRecipe);
+            UserInterface.DailyText(day, player);
             DisplayCost(player);
         }
         public void DisplayCost(Player player)
@@ -42,7 +89,6 @@ namespace LemonadeStand
         }
         public void EachDay(Player player)
         {
-            dayCounter++;
             day = new Day(dayCounter);
             double pitchers = 0;
             double price = 0;
@@ -259,34 +305,48 @@ namespace LemonadeStand
         {
             while (dayCounter < 7)
             {
-                EachDay(player1);
-                if (dayCounter < 6)
+                dayCounter++;
+                foreach (Player player in playerList)
                 {
-                    player1.myInventory.TerribleMisfortune();
-                }
-                if((player1.myInventory.myWallet < 3 && (player1.myInventory.NumberOfItems("sugar") == 0 || player1.myInventory.NumberOfItems("ice") == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.NumberOfItems("lemons") == 0))
-                {
-                    break;
+                    while (!player.bankrupt)
+                    {
+                        EachDay(player);
+                        if (dayCounter < 6)
+                        {
+                            player.myInventory.TerribleMisfortune();
+                        }
+                        if ((player.myInventory.myWallet < 3 && (player.myInventory.NumberOfItems("sugar") == 0 || player.myInventory.NumberOfItems("ice") == 0)) || (player.myInventory.myWallet < 4 && player.myInventory.NumberOfItems("lemons") == 0))
+                        {
+                            player.bankrupt = true;
+                            break;
+                        }
+                        break;
+                    }
                 }
             }
-            GameOver();
-        }
-        public void GameOver()
-        {
-            if (dayCounter == 7)
+            foreach (Player player in playerList)
             {
-                if(player1.myInventory.totalProfit >= 100)
+                GameOver(player);
+            }
+            Console.ResetColor();
+            Console.Clear();
+        }
+        public void GameOver(Player player)
+        {
+            if (!player.bankrupt)
+            {
+                if(player.myInventory.totalProfit >= 100)
                 {
-                    UserInterface.GameOver100(player1);
+                    UserInterface.GameOver100(player);
                 }
                 else
                 {
-                    UserInterface.GameOver(player1);
+                    UserInterface.GameOver(player);
                 }
             }
-            else if ((player1.myInventory.myWallet < 3 && (player1.myInventory.NumberOfItems("sugar") == 0 || player1.myInventory.NumberOfItems("ice") == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.NumberOfItems("lemons") == 0))
+            else if(player.bankrupt)
             {
-                UserInterface.Bankrupt();
+                UserInterface.Bankrupt(player);
             }
         }
     }

@@ -69,7 +69,7 @@ namespace LemonadeStand
                         UserInterface.ClearOldLine();
                         break;
                     case ConsoleKey.DownArrow:
-                        if (currentAmount > 1)
+                        if (currentAmount >= 1)
                         {
                             SubtractRecipeItem(item.name);
                         }

@@ -11,12 +11,16 @@ namespace LemonadeStand
         //member variables (HAS A)
         public Inventory myInventory;
         public Recipe myRecipe;
+        public string name;
+        public int order;
+        public bool bankrupt;
 
         //constructor (SPAWNER)
         public Player()
         {
             myInventory = new Inventory();
             myRecipe = new Recipe();
+            bankrupt = false;
         }
         //member methods (CAN DO)
         public double PourCups(double pitchers)
