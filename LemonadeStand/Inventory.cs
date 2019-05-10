@@ -46,7 +46,7 @@ namespace LemonadeStand
             double counter = 0;
             foreach (StoreItem item in allItems)
             {
-                if (item.Name == itemName)
+                if (item.name == itemName)
                 {
                     counter++;
                 }
@@ -57,7 +57,7 @@ namespace LemonadeStand
         {
             foreach (StoreItem item in allItems)
             {
-                if (item.Name == itemName)
+                if (item.name == itemName)
                 {
                     allItems.Remove(item);
                     break;

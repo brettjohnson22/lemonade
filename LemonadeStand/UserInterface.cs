@@ -38,7 +38,7 @@ namespace LemonadeStand
         }
         public static void StorePrices(Store store)
         {
-            Console.WriteLine($"\nYou are at the store.\n\n{store.lemon.SellAmount} lemons for ${store.lemon.CostPerOrder}\n{store.sugar.SellAmount} sugar for ${store.sugar.CostPerOrder}\n{store.ice.SellAmount} ice for ${store.ice.CostPerOrder}\n\nWhat do you want to buy?");
+            Console.WriteLine($"\nYou are at the store.\n\n{store.lemon.sellAmount} lemons for ${store.lemon.costPerOrder}\n{store.sugar.sellAmount} sugar for ${store.sugar.costPerOrder}\n{store.ice.sellAmount} ice for ${store.ice.costPerOrder}\n\nWhat do you want to buy?");
             IngredientPrompt();
         }
         public static void CantAfford()

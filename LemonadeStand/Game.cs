@@ -277,7 +277,7 @@ namespace LemonadeStand
             double costOfPitcher = 0;
             foreach (StoreItem item in player.myRecipe.recipeList)
             {
-                costOfPitcher += (item.CostPerOrder / item.SellAmount);
+                costOfPitcher += (item.costPerOrder / item.sellAmount);
             }
             double costOfCup = Math.Round(costOfPitcher / cupsPerPitcher, 2);
             return costOfCup;

@@ -12,9 +12,6 @@ namespace LemonadeStand
         public double sellAmount;
         public double costPerOrder;
         public string name;
-        public double SellAmount { get { return sellAmount; } }
-        public double CostPerOrder { get { return costPerOrder; } }
-        public string Name { get { return name; } }
 
         //constructor (SPAWNER)
         static StoreItem()
