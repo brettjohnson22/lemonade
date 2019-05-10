@@ -11,14 +11,14 @@ namespace LemonadeStand
         //member variables (HAS A)
         public double myWallet;
         public double totalProfit;
-        public Recipe myRecipe;
+        //public Recipe myRecipe;
         public List<StoreItem> allItems;
 
 
         //constructor (SPAWNER)
         public Inventory()
         {
-            myRecipe = new Recipe();
+            //myRecipe = new Recipe();
             myWallet = 10;
             totalProfit = 0;
         }
@@ -72,41 +72,41 @@ namespace LemonadeStand
                 }
             }
         }
-            //public void TerribleMisfortune()
-            //{
-            //    Random rand = new Random();
-            //    int misfortune = rand.Next(10);
-            //    switch(misfortune)
-            //    {
-            //        case 0:
-            //        case 1:
-            //        case 2:
-            //        case 3:
-            //        case 4:
-            //            break;
-            //        case 5:
-            //        case 6:
-            //            ice = 0;
-            //            UserInterface.IceMelt();
-            //            break;
-            //        case 7:
-            //            lemons = 0;
-            //            UserInterface.LemonToss();
-            //            break;
-            //        case 8:
-            //            sugar = 0;
-            //            UserInterface.SugarTank();
-            //            break;
-            //        case 9:
-            //            if (myWallet > 15)
-            //            {
-            //                myWallet -= 5;
-            //                totalProfit -= 5;
-            //                UserInterface.BullySwipe();
-            //            }
-            //            break;
-            //    }
-            //}
+        public void TerribleMisfortune()
+        {
+            Random rand = new Random();
+            int misfortune = rand.Next(10);
+            switch (misfortune)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    break;
+                case 5:
+                case 6:
+                    SubtractInventoryItem("ice", NumberOfItems("ice"));
+                    UserInterface.IceMelt();
+                    break;
+                case 7:
+                    SubtractInventoryItem("lemon", NumberOfItems("lemon"));
+                    UserInterface.LemonToss();
+                    break;
+                case 8:
+                    SubtractInventoryItem("sugar", NumberOfItems("sugar"));
+                    UserInterface.SugarTank();
+                    break;
+                case 9:
+                    if (myWallet > 15)
+                    {
+                        myWallet -= 5;
+                        totalProfit -= 5;
+                        UserInterface.BullySwipe();
+                    }
+                    break;
+            }
         }
+    }
     }
 

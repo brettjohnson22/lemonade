@@ -18,10 +18,10 @@ namespace LemonadeStand
             Console.WriteLine("Welcome to Lemonade Stand!\n\nIn this game, you will be running a Lemonade Stand over the course of a week.\n\nYou will have to purchase ingredients and set the price each day. While you can charge less than a dollar per cup, keep in mind it's 2019 and a cup of lemonade costs $5 at Starbucks.\n\nThe weather and your recipe will affect sales.\nThere's also a small chance of a terrible misfortune affecting your supplies on any day.\n\nHow much can you make in 7 days?\n\nHit 'Enter' to start.");
             Console.ReadLine();
         }
-        public static void DailyText(Day day, Inventory inv)
+        public static void DailyText(Day day, Inventory inv, Recipe recipe)
         {
             Console.Clear();
-            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.NumberOfItems("lemon")} lemons, {inv.NumberOfItems("sugar")} sugar, and {inv.NumberOfItems("ice")} ice.\n\nEach pitcher uses {inv.myRecipe.NumberInRecipe("lemon")} lemons, {inv.myRecipe.NumberInRecipe("sugar")} sugar, and {inv.myRecipe.NumberInRecipe("ice")} ice.\n");
+            Console.WriteLine($"\nWelcome to Day {day.dayNumber}.\n\nToday's forecast is {day.weather.forecast}.\n\nYou have ${inv.myWallet}.\n\nCurrent Stock: {inv.NumberOfItems("lemon")} lemons, {inv.NumberOfItems("sugar")} sugar, and {inv.NumberOfItems("ice")} ice.\n\nEach pitcher uses {recipe.NumberInRecipe("lemon")} lemons, {recipe.NumberInRecipe("sugar")} sugar, and {recipe.NumberInRecipe("ice")} ice.\n");
         }
         public static void CostDisplay(double costOfCup)
         {
@@ -45,10 +45,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nGo to store, change recipe, or proceed?\nType 'S' for store, 'R' for recipe', or 'P' to proceed.");
         }
-        public static void EndOfDay(Day day, double potential, double customers, double price, double sales, double profit, Inventory inv)
+        public static void EndOfDay(Day day, double potential, double customers, double cups, double price, double sales, double profit, Inventory inv)
         {
             Console.Clear();
-            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\n{potential} people walked by your stand.\n\nYou sold {customers} cups at ${price} per cup, and made ${sales} for a profit of ${profit}. You now have $" + inv.myWallet + "." );
+            Console.WriteLine($"\nToday was Day {day.dayNumber}. The weather was {day.weather.temperature} degrees and {day.weather.actualWeather}.\n\n{potential} people walked by your stand.\n\nYou sold {customers} of your {cups} cups at ${price} per cup, and made ${sales} for a profit of ${profit}. You now have $" + inv.myWallet + "." );
         }
         public static void IceMelt()
         {
@@ -119,10 +119,10 @@ namespace LemonadeStand
         public static void ClearOldLine()
         {
             Console.SetCursorPosition(0, Console.CursorTop - 1);
-            int returnplacement = Console.CursorTop;
+            int returnPlacement = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, returnplacement);
+            Console.SetCursorPosition(0, returnPlacement);
         }
         public static void ChangeTextColor()
         {

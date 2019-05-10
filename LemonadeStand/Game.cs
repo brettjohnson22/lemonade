@@ -27,14 +27,14 @@ namespace LemonadeStand
             player1 = new Player();
             store = new Store();
             player1.myInventory.StartingStock();
-            player1.myInventory.myRecipe.StartingRecipe();
+            player1.myRecipe.StartingRecipe();
             dayCounter = 0;
             cupsPerPitcher = 6;
             UserInterface.IntroText();
         }
         public void MainDisplay()
         {
-            UserInterface.DailyText(day, player1.myInventory);
+            UserInterface.DailyText(day, player1.myInventory, player1.myRecipe);
             DisplayCost();
         }
         public void DisplayCost()
@@ -57,18 +57,18 @@ namespace LemonadeStand
             while(pitchers == 0)
             {
                 MainDisplay();
-                pitchers = MakePitchers(player1.myInventory, price);
+                pitchers = MakePitchers(player1.myInventory, player1.myRecipe, price);
             }
             double cups = player1.PourCups(pitchers);
             double numberOfPotentialCustomers = day.DetermineNumberOfPotentialCustomers(day.weather);
             List<Customer> potentialCustomers = day.GiveCustomersPersonalities(numberOfPotentialCustomers);
-            double actualCustomers = day.DeterminePayingCustomers(potentialCustomers, day.weather, player1.myInventory.myRecipe, price, cups);
+            double actualCustomers = day.DeterminePayingCustomers(potentialCustomers, day.weather, player1.myRecipe, price, cups);
             double sales = TotalSales(price, actualCustomers);
             double dailyExpense = DailyExpense(pitchers);
             double dailyProfit = DailyProfits(sales, dailyExpense);
             UpdateWallet(player1.myInventory, sales);
             UpdateTotalProfits(player1.myInventory, dailyProfit);
-            UserInterface.EndOfDay(day, numberOfPotentialCustomers, actualCustomers, price, sales, dailyProfit, player1.myInventory);
+            UserInterface.EndOfDay(day, numberOfPotentialCustomers, actualCustomers, cups, price, sales, dailyProfit, player1.myInventory);
             Console.ReadLine();
         }
         public double GetPrice()
@@ -86,7 +86,7 @@ namespace LemonadeStand
             }
             return price;
         }
-        public double MakePitchers(Inventory inv, double price)
+        public double MakePitchers(Inventory inv, Recipe recipe, double price)
         {
             MainDisplay();
             double pitchers = 0;
@@ -99,11 +99,11 @@ namespace LemonadeStand
             {
                 UserInterface.EnterANumber();
             }
-            if (pitchers * inv.myRecipe.NumberInRecipe("lemon") <= inv.NumberOfItems("lemon") && pitchers * inv.myRecipe.NumberInRecipe("sugar") <= inv.NumberOfItems("sugar") && pitchers * inv.myRecipe.NumberInRecipe("ice") <= inv.NumberOfItems("ice"))
+            if (pitchers * recipe.NumberInRecipe("lemon") <= inv.NumberOfItems("lemon") && pitchers * recipe.NumberInRecipe("sugar") <= inv.NumberOfItems("sugar") && pitchers * recipe.NumberInRecipe("ice") <= inv.NumberOfItems("ice"))
             {
-                inv.SubtractInventoryItem("lemon", inv.myRecipe.NumberInRecipe("lemon"));
-                inv.SubtractInventoryItem("sugar", inv.myRecipe.NumberInRecipe("sugar"));
-                inv.SubtractInventoryItem("ice", inv.myRecipe.NumberInRecipe("ice"));
+                inv.SubtractInventoryItem("lemon", recipe.NumberInRecipe("lemon"));
+                inv.SubtractInventoryItem("sugar", recipe.NumberInRecipe("sugar"));
+                inv.SubtractInventoryItem("ice", recipe.NumberInRecipe("ice"));
                 return pitchers;
             }
             else 
@@ -118,7 +118,7 @@ namespace LemonadeStand
                     case "n":
                         break;
                 }
-                pitchers = MakePitchers(inv, price);
+                pitchers = MakePitchers(inv, recipe, price);
                 return pitchers;
             }
         }
@@ -140,7 +140,7 @@ namespace LemonadeStand
                     case "recipe":
                         goto case "r";
                     case "r":
-                        ChangeRecipe();
+                        ChangeRecipe(player1.myRecipe);
                         break;
                     case "store":
                         goto case "s";
@@ -190,7 +190,7 @@ namespace LemonadeStand
                 }
             }
         }
-        public void ChangeRecipe()
+        public void ChangeRecipe(Recipe recipe)
         { 
             bool proceed = false;
             while (!proceed)
@@ -205,19 +205,19 @@ namespace LemonadeStand
                         goto case "l";
                     case "l":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustItem<Lemon>(player1.myInventory, ref store.lemon);
+                        recipe.AdjustItem<Lemon>(player1.myInventory, ref store.lemon);
                         break;
                     case "sugar":
                         goto case "s";
                     case "s":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustItem<Sugar>(player1.myInventory, ref store.sugar);
+                        recipe.AdjustItem<Sugar>(player1.myInventory, ref store.sugar);
                         break;
                     case "ice":
                         goto case "i";
                     case "i":
                         MainDisplay();
-                        player1.myInventory.myRecipe.AdjustItem<Ice>(player1.myInventory, ref store.ice);
+                        recipe.AdjustItem<Ice>(player1.myInventory, ref store.ice);
                         break;
                     case "p":
                         proceed = true;
@@ -229,7 +229,7 @@ namespace LemonadeStand
         }
         public double CalculateCost()
         {
-            double costofpitcher = (player1.myInventory.myRecipe.NumberInRecipe("lemon") * (store.lemon.CostPerOrder / store.lemon.SellAmount) + player1.myInventory.myRecipe.NumberInRecipe("sugar") * (store.sugar.CostPerOrder / store.sugar.SellAmount) + player1.myInventory.myRecipe.NumberInRecipe("ice") * (store.ice.CostPerOrder / store.ice.SellAmount));
+            double costofpitcher = (player1.myRecipe.NumberInRecipe("lemon") * (store.lemon.CostPerOrder / store.lemon.SellAmount) + player1.myRecipe.NumberInRecipe("sugar") * (store.sugar.CostPerOrder / store.sugar.SellAmount) + player1.myRecipe.NumberInRecipe("ice") * (store.ice.CostPerOrder / store.ice.SellAmount));
             double costofcup = Math.Round(costofpitcher / cupsPerPitcher, 2);
             return costofcup;
         }
@@ -254,10 +254,13 @@ namespace LemonadeStand
         }
         public void RunWeek()
         {
-            while (dayCounter < 20)
+            while (dayCounter < 7)
             {
                 EachDay();
-                //player1.myInventory.TerribleMisfortune();
+                if (dayCounter < 6)
+                {
+                    player1.myInventory.TerribleMisfortune();
+                }
                 if((player1.myInventory.myWallet < 3 && (player1.myInventory.NumberOfItems("sugar") == 0 || player1.myInventory.NumberOfItems("ice") == 0)) || (player1.myInventory.myWallet < 4 && player1.myInventory.NumberOfItems("lemons") == 0))
                 {
                     break;
