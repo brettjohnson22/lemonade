@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class CheapSkate : Customer
+    public class CheapSkate : Customer
     {
         //member methods (CAN DO)
         

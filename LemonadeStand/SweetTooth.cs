@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class SweetTooth : Customer
+    public class SweetTooth : Customer
     {
         //member variables (HAS A)
 
@@ -36,7 +36,7 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
-            if (weather.temperature >= 63 && weather.temperature <= 80 & recipe.NumberInRecipe("ice") > 10 && recipe.NumberInRecipe("ice") <= 16)
+            if (weather.temperature >= 63 && weather.temperature <= 80 && recipe.NumberInRecipe("ice") > 10 && recipe.NumberInRecipe("ice") <= 16)
             {
                 decisionFactors++;
             }
@@ -44,7 +44,7 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
-            if (recipe.NumberInRecipe("sugar") >= recipe.NumberInRecipe("lemons"))
+            if (recipe.NumberInRecipe("sugar") >= recipe.NumberInRecipe("lemon"))
             {
                 decisionFactors++;
             }
@@ -53,7 +53,7 @@ namespace LemonadeStand
                 decisionFactors++;
                 decisionFactors++;
             }
-            if (recipe.NumberInRecipe("lemons") > recipe.NumberInRecipe("sugar"))
+            if (recipe.NumberInRecipe("lemon") > recipe.NumberInRecipe("sugar"))
             {
                 decisionFactors--;
             }
@@ -68,7 +68,7 @@ namespace LemonadeStand
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (recipe.NumberInRecipe("lemons") < 2 || recipe.NumberInRecipe("lemons") > 8)
+            if (recipe.NumberInRecipe("lemon") < 2 || recipe.NumberInRecipe("lemon") > 8)
             {
                 decisionFactors--;
                 decisionFactors--;

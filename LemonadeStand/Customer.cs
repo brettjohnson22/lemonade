@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Customer
+    public abstract class Customer
     {
         //member variables (HAS A)
         public double customerWallet;
@@ -42,11 +42,11 @@ namespace LemonadeStand
             {
                 decisionFactors++;
             }
-            if (recipe.NumberInRecipe("sugar") >= recipe.NumberInRecipe("lemons"))
+            if (recipe.NumberInRecipe("sugar") >= recipe.NumberInRecipe("lemon"))
             {
                 decisionFactors++;
             }
-            if (recipe.NumberInRecipe("lemons") > recipe.NumberInRecipe("sugar"))
+            if (recipe.NumberInRecipe("lemon") > recipe.NumberInRecipe("sugar"))
             {
                 decisionFactors--;
             }
@@ -61,7 +61,7 @@ namespace LemonadeStand
                 decisionFactors--;
                 decisionFactors--;
             }
-            if (recipe.NumberInRecipe("lemons") < 2 || recipe.NumberInRecipe("lemons") > 10)
+            if (recipe.NumberInRecipe("lemon") < 2 || recipe.NumberInRecipe("lemon") > 10)
             {
                 decisionFactors--;
                 decisionFactors--;
